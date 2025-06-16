@@ -1,5 +1,15 @@
 {
   caduceus: {
+    book: {
+      basics: {
+        caduceus_changes: {
+          "": "Caduceus Changes",
+          "1": "WIP.$(br2)\
+            $(li)Improved jump iota display.",
+        },
+      },
+    },
+
     tooltip: {
       continuation: {
         done: "[Jump -> Done]",
