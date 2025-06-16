@@ -27,24 +27,30 @@ fun getFrameTypeKey(tag: CompoundTag): ResourceLocation? {
     return ResourceLocation(typeKey)
 }
 
+fun getFrameI18n(tag: CompoundTag): Component {
+    // ContinuationFrame.fromNBT returns an empty FrameEvaluate if getTypeFromTag returns null
+    val typeKey = getFrameTypeKey(tag) ?: HexAPI.modLoc("evaluate")
+
+    // if a continuation frame doesn't have a translation key, just use the id
+    return Component.translatableWithFallback(
+        "caduceus.tooltip.continuation.frame.$typeKey",
+        typeKey.toString()
+    )
+}
+
 fun displayContinuation(tag: Tag): Component {
-    val nbt = tag.downcast(CompoundTag.TYPE)
-    val frames = nbt.getList(TAG_FRAME, Tag.TAG_COMPOUND)
-    val frame = frames.firstNotNullOfOrNull { it as? CompoundTag }
+    val frames = tag.downcast(CompoundTag.TYPE)
+        .getList(TAG_FRAME, Tag.TAG_COMPOUND)
+        .asSequence()
+        .mapNotNull { it as? CompoundTag }
+        .map { getFrameI18n(it) }
+        .take(2)
+        .toList()
+        .toTypedArray()
 
-    return when (frame) {
-        null -> "caduceus.tooltip.continuation.done".asTranslatedComponent
-        else -> {
-            // ContinuationFrame.fromNBT returns an empty FrameEvaluate if getTypeFromTag returns null
-            val typeKey = getFrameTypeKey(frame) ?: HexAPI.modLoc("evaluate")
-
-            // if a continuation frame doesn't have a translation key, just use the id
-            val name = Component.translatableWithFallback(
-                "caduceus.tooltip.continuation.frame.$typeKey",
-                typeKey.toString()
-            )
-
-            "caduceus.tooltip.continuation.not_done".asTranslatedComponent(name)
-        }
-    }.red
+    return when (frames.size) {
+        0 -> "caduceus.tooltip.continuation.done"
+        1 -> "caduceus.tooltip.continuation.not_done.one"
+        else -> "caduceus.tooltip.continuation.not_done.many"
+    }.asTranslatedComponent(*frames).red
 }
