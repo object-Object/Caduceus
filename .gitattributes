@@ -1,0 +1,2 @@
+# avoid spurious diffs since datagen creates LF files
+generated/** text=auto eol=lf

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "caduceus",
+  "version": "${version}",
+  "name": "Caduceus",
+  "description": "A Hex Casting addon that adds more features to jump iotas. Created for HexJam 2025.",
+  "authors": [
+    "object-Object"
+  ],
+  "contact": {
+    "homepage": "https://caduceus.hexxy.media",
+    "sources": "https://github.com/object-Object/Caduceus"
+  },
+  "license": "MIT",
+  "icon": "assets/caduceus/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [{
+      "adapter": "kotlin",
+      "value": "gay.object.caduceus.fabric.FabricCaduceus"
+    }],
+    "client": [{
+      "adapter": "kotlin",
+      "value": "gay.object.caduceus.fabric.FabricCaduceusClient"
+    }],
+    "modmenu": [{
+      "adapter": "kotlin",
+      "value": "gay.object.caduceus.fabric.FabricCaduceusModMenu"
+    }]
+  },
+  "mixins": [
+    "caduceus-common.mixins.json",
+    "caduceus-fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${versions.minecraft}",
+    "fabricloader": ">=${versions.fabric_loader}",
+    "fabric-api": ">=${versions.fabric_api}",
+    "fabric-language-kotlin": ">=${versions.kotlin_fabric}",
+    "architectury": ">=${versions.architectury}",
+    "hexcasting": ">=${versions.hexcasting_dependency}",
+    "cloth-config": ">=${versions.clothConfig}"
+  },
+  "suggests": {
+    "modmenu": ">=${versions.modMenu}"
+  }
+}

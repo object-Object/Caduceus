@@ -1,0 +1,56 @@
+modid = "caduceus"
+book = "hexcasting:thehexbook"
+
+resource_dirs = [  # top takes priority
+    "resources",
+    "{$_common.src}/main/resources",
+    { path="{$_common.src}/generated/resources", required=false },
+    "{$_fabric.src}/main/resources",
+    { path="{$_fabric.src}/generated/resources", required=false },
+    "{$_forge.src}/main/resources",
+    { path="{$_forge.src}/generated/resources", required=false },
+    { modid="hexcasting" },
+    { modid="minecraft" },
+    { modid="hexdoc" },
+]
+export_dir = "src/hexdoc_caduceus/_export/generated"
+
+[template]
+icon = "{$_common.src}/main/resources/assets/caduceus/icon.png"
+include = [
+    "caduceus",
+    "hexcasting",
+    "hexdoc",
+]
+
+[template.args]
+mod_name = "Caduceus"
+author = "object-Object"
+show_landing_text = false
+
+[extra.hexcasting]
+# NOTE: "!Raw" means "don't apply variable interpolation to this value"
+_pattern_regex = { "!Raw"='(?P<is_per_world>make|makePerWorld)\("(?P<name>[^"]+)",\s*HexDir\.(?P<startdir>\w+),\s*"(?P<signature>[qweasd]+)"' }
+_per_world_value = "makePerWorld"
+
+[[extra.hexcasting.pattern_stubs]]
+path = "{$_common.kotlin}/registry/CaduceusActions.kt"
+regex = "{^_pattern_regex}"
+per_world_value = "{^_per_world_value}"
+
+# platforms
+
+[_common]
+src = "../common/src"
+java = "{src}/main/java/gay/object/caduceus"
+kotlin = "{src}/main/kotlin/gay/object/caduceus"
+
+[_fabric]
+src = "../fabric/src"
+java = "{src}/main/java/gay/object/caduceus/fabric"
+kotlin = "{src}/main/kotlin/gay/object/caduceus/fabric"
+
+[_forge]
+src = "../forge/src"
+java = "{src}/main/java/gay/object/caduceus/forge"
+kotlin = "{src}/main/kotlin/gay/object/caduceus/forge"

@@ -1,0 +1,21 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually
+_commit: v2.0.2
+_src_path: gh:FallingColors/hexdummy
+advanced: true
+capitalize_platforms: false
+classname: Caduceus
+default_branch: main
+description: A Hex Casting addon that adds more features to jump iotas. Created for
+    HexJam 2025.
+display_name: Caduceus
+github_repo: Caduceus
+github_user: object-Object
+homepage_url: https://caduceus.hexxy.media
+java_package: gay.object.caduceus
+kotlin_package: gay.`object`.caduceus
+mappings_name: Mojmap
+minecraft_version_in_mod_version: true
+mod_version: 0.1.0
+modid: caduceus
+sources_url: https://github.com/object-Object/Caduceus

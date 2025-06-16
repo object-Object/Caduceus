@@ -1,0 +1,125 @@
+# This file is a version catalog - a central place where you can declare all of your dependencies and their versions.
+# In your build scripts, you can reference it with the `libs` accessor. For example: `libs.hexcasting.fabric`
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+
+[versions]
+java = "17" # must be an integer
+
+kotlin = "1.9.22"
+kotlin-fabric = "1.10.18+kotlin.1.9.22"
+kotlin-forge = "4.10.0"
+
+# Minecraft
+
+minecraft = "1.20.1"
+parchment = "2023.09.03"
+
+architectury = "9.2.14"
+architectury-plugin = { require="[3.4, 3.5[" }
+architectury-loom = { require="[1.7, 1.8[" }
+
+fabric-loader = "0.14.25"
+fabric-api = "0.87.0+1.20.1"
+
+forge = "1.20.1-47.2.0"
+forge-dependency = "47" # for mods.toml
+
+# mods
+
+# 0.11.2-pre-701 corresponds to the build of 0.11.2 on CurseForge/Modrinth
+hexcasting = "0.11.2-pre-701"
+# FIXME: this should be 0.11.2, but that breaks the dev environment
+hexcasting-dependency = "0.11.1"
+paucal = "0.6.0-pre-118"
+pkpcpbp = "0.2.0-pre-95"
+
+patchouli = "1.20.1-84"
+patchouli-fabric = "1.20.1-84-FABRIC"
+patchouli-forge = "1.20.1-84-FORGE"
+
+trinkets = "3.7.0"
+
+cardinalComponents = "5.2.1"
+serializationHooks = "0.4.99999"
+mixinExtras = "0.4.1"
+clothConfig = "11.1.106"
+modMenu = "7.1.0"
+inline = "1.20.1-1.0.1"
+
+caelus = "3.1.0+1.20"
+
+# other dependencies
+
+asm = "9.5"
+shadow = "7.1.2"
+modPublish = "0.5.1"
+
+[bundles]
+asm = ["asm", "asm-analysis", "asm-commons", "asm-tree", "asm-util"]
+
+[libraries]
+kotlin-stdlib = { module="org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref="kotlin" }
+kotlin-fabric = { module="net.fabricmc:fabric-language-kotlin", version.ref="kotlin-fabric" }
+kotlin-forge  = { module="thedarkcolour:kotlinforforge", version.ref="kotlin-forge" }
+
+minecraft = { module="com.mojang:minecraft", version.ref="minecraft" }
+
+parchment = { module="org.parchmentmc.data:parchment-1.20.1", version.ref="parchment" }
+
+architectury        = { module="dev.architectury:architectury", version.ref="architectury" }
+architectury-forge  = { module="dev.architectury:architectury-forge", version.ref="architectury" }
+architectury-fabric = { module="dev.architectury:architectury-fabric", version.ref="architectury" }
+
+fabric-loader = { module="net.fabricmc:fabric-loader", version.ref="fabric-loader" }
+fabric-api    = { module="net.fabricmc.fabric-api:fabric-api", version.ref="fabric-api" }
+
+forge = { module="net.minecraftforge:forge", version.ref="forge" }
+
+hexcasting-common = { module="at.petra-k.hexcasting:hexcasting-common-1.20.1", version.ref="hexcasting" }
+hexcasting-fabric = { module="at.petra-k.hexcasting:hexcasting-fabric-1.20.1", version.ref="hexcasting" }
+hexcasting-forge  = { module="at.petra-k.hexcasting:hexcasting-forge-1.20.1", version.ref="hexcasting" }
+
+paucal-common = { module="at.petra-k.paucal:paucal-common-1.20.1", version.ref="paucal" }
+paucal-fabric = { module="at.petra-k.paucal:paucal-fabric-1.20.1", version.ref="paucal" }
+paucal-forge  = { module="at.petra-k.paucal:paucal-forge-1.20.1", version.ref="paucal" }
+
+patchouli-xplat  = { module="vazkii.patchouli:Patchouli-xplat", version.ref="patchouli" }
+patchouli-fabric = { module="vazkii.patchouli:Patchouli", version.ref="patchouli-fabric" }
+patchouli-forge  = { module="vazkii.patchouli:Patchouli", version.ref="patchouli-forge" }
+
+trinkets = { module="dev.emi:trinkets", version.ref="trinkets" }
+
+cardinalComponents = { module="dev.onyxstudios.cardinal-components-api:cardinal-components-api", version.ref="cardinalComponents" }
+modMenu            = { module="com.terraformersmc:modmenu", version.ref="modMenu" }
+
+mixinExtras-common = { module="io.github.llamalad7:mixinextras-common", version.ref="mixinExtras" }
+mixinExtras-fabric = { module="io.github.llamalad7:mixinextras-fabric", version.ref="mixinExtras" }
+mixinExtras-forge  = { module="io.github.llamalad7:mixinextras-forge", version.ref="mixinExtras" }
+
+clothConfig-common = { module="me.shedaniel.cloth:cloth-config", version.ref="clothConfig" }
+clothConfig-fabric = { module="me.shedaniel.cloth:cloth-config-fabric", version.ref="clothConfig" }
+clothConfig-forge  = { module="me.shedaniel.cloth:cloth-config-forge", version.ref="clothConfig" }
+
+caelus = { module="top.theillusivec4.caelus:caelus-forge", version.ref="caelus" }
+
+inline-fabric = { module="com.samsthenerd.inline:inline-fabric", version.ref="inline" }
+inline-forge  = { module="com.samsthenerd.inline:inline-forge", version.ref="inline" }
+
+asm          = { module="org.ow2.asm:asm", version.ref="asm" }
+asm-analysis = { module="org.ow2.asm:asm-analysis", version.ref="asm" }
+asm-commons  = { module="org.ow2.asm:asm-commons", version.ref="asm" }
+asm-tree     = { module="org.ow2.asm:asm-tree", version.ref="asm" }
+asm-util     = { module="org.ow2.asm:asm-util", version.ref="asm" }
+
+
+serializationHooks = { module="libs:serialization-hooks", version.ref="serializationHooks" }
+
+[plugins]
+kotlin-jvm = { id="org.jetbrains.kotlin.jvm", version.ref="kotlin" }
+
+architectury      = { id="architectury-plugin", version.ref="architectury-plugin" }
+architectury-loom = { id="dev.architectury.loom", version.ref="architectury-loom" }
+
+shadow     = { id="com.github.johnrengelman.shadow", version.ref="shadow" }
+modPublish = { id="me.modmuss50.mod-publish-plugin", version.ref="modPublish" }
+pkJson5    = { id="at.petra-k.pkpcpbp.PKJson5Plugin", version.ref="pkpcpbp" }

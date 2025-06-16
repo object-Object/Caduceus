@@ -1,0 +1,8 @@
+{
+  hexdoc: {
+    caduceus: {
+      title: "Caduceus Book",
+      description: "A Hex Casting addon that adds more features to jump iotas. Created for HexJam 2025.",
+    },
+  }
+}
