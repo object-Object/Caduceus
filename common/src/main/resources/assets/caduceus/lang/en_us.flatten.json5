@@ -1,1 +1,18 @@
-{}
+{
+  caduceus: {
+    tooltip: {
+      continuation: {
+        done: "[Jump -> Done]",
+        not_done: "[Jump -> NotDone(%s)]",
+
+        frame: {
+          "hexcasting:": {
+            evaluate: "Evaluate",
+            foreach: "ForEach",
+            end: "FinishEval",
+          },
+        },
+      },
+    },
+  },
+}

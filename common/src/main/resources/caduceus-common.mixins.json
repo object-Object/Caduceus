@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "MixinContinuationIotaType"
   ],
   "injectors": {
     "defaultRequire": 1
