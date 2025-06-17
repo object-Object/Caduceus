@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "MixinContinuationIotaType"
+    "MixinContinuationIotaType",
+    "actions.MixinOpSplat"
   ],
   "injectors": {
     "defaultRequire": 1
