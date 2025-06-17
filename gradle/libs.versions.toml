@@ -10,6 +10,9 @@ kotlin-fabric = "1.10.18+kotlin.1.9.22"
 kotlin-forge = "4.10.0"
 
 clojure = "1.12.1"
+clojure-core-specs = "0.4.74"
+clojure-spec = "0.5.238"
+
 clojurephant = "0.8.0"
 
 # Minecraft
@@ -59,13 +62,16 @@ modPublish = "0.5.1"
 
 [bundles]
 asm = ["asm", "asm-analysis", "asm-commons", "asm-tree", "asm-util"]
+clojure = ["clojure", "clojure-core-specs", "clojure-spec"]
 
 [libraries]
 kotlin-stdlib = { module="org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref="kotlin" }
 kotlin-fabric = { module="net.fabricmc:fabric-language-kotlin", version.ref="kotlin-fabric" }
 kotlin-forge  = { module="thedarkcolour:kotlinforforge", version.ref="kotlin-forge" }
 
-clojure = { module="org.clojure:clojure", version.ref="clojure" }
+clojure            = { module="org.clojure:clojure", version.ref="clojure" }
+clojure-core-specs = { module="org.clojure:core.specs.alpha", version.ref="clojure-core-specs" }
+clojure-spec       = { module="org.clojure:spec.alpha", version.ref="clojure-spec" }
 
 minecraft = { module="com.mojang:minecraft", version.ref="minecraft" }
 

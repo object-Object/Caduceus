@@ -31,7 +31,7 @@ caduceusModDependencies {
 }
 
 dependencies {
-    libs.clojure.also {
+    libs.bundles.clojure.also {
         api(it)
         include(it)
     }
