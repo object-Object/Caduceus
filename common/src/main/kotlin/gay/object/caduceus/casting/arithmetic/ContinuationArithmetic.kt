@@ -1,10 +1,8 @@
 package gay.`object`.caduceus.casting.arithmetic
 
 import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic
-import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic.ABS
-import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic.ADD
+import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic.*
 import at.petrak.hexcasting.api.casting.arithmetic.engine.InvalidOperatorException
-import at.petrak.hexcasting.api.casting.arithmetic.operator.Operator.Companion.downcast
 import at.petrak.hexcasting.api.casting.arithmetic.operator.OperatorBinary
 import at.petrak.hexcasting.api.casting.arithmetic.operator.OperatorUnary
 import at.petrak.hexcasting.api.casting.arithmetic.predicates.IotaMultiPredicate.all
@@ -12,9 +10,9 @@ import at.petrak.hexcasting.api.casting.arithmetic.predicates.IotaPredicate
 import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation
 import at.petrak.hexcasting.api.casting.iota.ContinuationIota
 import at.petrak.hexcasting.api.casting.iota.DoubleIota
-import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes.CONTINUATION
+import gay.`object`.caduceus.casting.arithmetic.operator.OperatorUnConsContinuation
 import gay.`object`.caduceus.casting.iota.frameSequence
 import java.util.function.BinaryOperator
 
@@ -22,6 +20,8 @@ object ContinuationArithmetic : Arithmetic {
     private val OPS = listOf(
         ABS,
         ADD,
+        CONS,
+        UNCONS,
     )
 
     override fun arithName() = "continuation_ops"
@@ -41,6 +41,13 @@ object ContinuationArithmetic : Arithmetic {
                 .asReversed()
                 .fold(j, SpellContinuation::pushFrame)
         }
+        CONS -> make2 { i, j ->
+            when (j) {
+                is SpellContinuation.NotDone -> i.pushFrame(j.frame)
+                else -> i
+            }
+        }
+        UNCONS -> OperatorUnConsContinuation
         else -> throw InvalidOperatorException("$pattern is not a valid operator in Arithmetic $this.")
     }
 
@@ -48,7 +55,4 @@ object ContinuationArithmetic : Arithmetic {
         OperatorBinary(all(IotaPredicate.ofType(CONTINUATION))) { i, j ->
             ContinuationIota(op.apply(downcastContinuation(i), downcastContinuation(j)))
         }
-
-    private fun downcastContinuation(iota: Iota): SpellContinuation =
-        downcast(iota, CONTINUATION).continuation
 }
