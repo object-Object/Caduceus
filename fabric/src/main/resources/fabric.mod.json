@@ -3,7 +3,7 @@
   "id": "caduceus",
   "version": "${version}",
   "name": "Caduceus",
-  "description": "A Hex Casting addon that adds more features to jump iotas. Created for HexJam 2025.",
+  "description": "A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025.",
   "authors": [
     "object-Object"
   ],
@@ -15,18 +15,8 @@
   "icon": "assets/caduceus/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [{
-      "adapter": "kotlin",
-      "value": "gay.object.caduceus.fabric.FabricCaduceus"
-    }],
-    "client": [{
-      "adapter": "kotlin",
-      "value": "gay.object.caduceus.fabric.FabricCaduceusClient"
-    }],
-    "modmenu": [{
-      "adapter": "kotlin",
-      "value": "gay.object.caduceus.fabric.FabricCaduceusModMenu"
-    }]
+    "main": ["gay.object.caduceus.fabric.FabricCaduceus"],
+    "client": ["gay.object.caduceus.fabric.FabricCaduceusClient"]
   },
   "mixins": [
     "caduceus-common.mixins.json",

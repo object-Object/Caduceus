@@ -1,7 +1,5 @@
 package gay.`object`.caduceus
 
-import gay.`object`.caduceus.config.CaduceusConfig
-import gay.`object`.caduceus.networking.CaduceusNetworking
 import gay.`object`.caduceus.registry.CaduceusActions
 import gay.`object`.caduceus.registry.CaduceusArithmetics
 import net.minecraft.resources.ResourceLocation
@@ -17,12 +15,12 @@ object Caduceus {
     @JvmStatic
     fun id(path: String) = ResourceLocation(MODID, path)
 
+    @JvmStatic
     fun init() {
-        CaduceusConfig.init()
+        LOGGER.info("Making Iris' Gambit more confusing...")
         initRegistries(
             CaduceusActions,
             CaduceusArithmetics,
         )
-        CaduceusNetworking.init()
     }
 }

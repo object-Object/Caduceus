@@ -16,6 +16,7 @@ repositories {
 dependencies {
     // plugins used in convention plugins
     implementation(pluginMarker(libs.plugins.kotlin.jvm))
+    implementation(pluginMarker(libs.plugins.clojurephant))
     implementation(pluginMarker(libs.plugins.architectury.asProvider()))
     implementation(pluginMarker(libs.plugins.architectury.loom))
     implementation(pluginMarker(libs.plugins.shadow))

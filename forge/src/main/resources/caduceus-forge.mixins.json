@@ -6,9 +6,7 @@
   "client": [
   ],
   "mixins": [
-    "MixinDatagenMain"
   ],
-  "plugin": "gay.object.caduceus.forge.mixin.ForgeMixinConfigPlugin",
   "injectors": {
     "defaultRequire": 1
   }

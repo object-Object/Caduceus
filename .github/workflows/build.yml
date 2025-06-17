@@ -45,13 +45,13 @@ jobs:
         run: ./gradlew build
 
       # if this step fails, you need to run your datagen and commit the updated files
-      - name: Check if datagen needs to be run
-        timeout-minutes: 3
-        run: |
-          mkdir -p /home/runner/.gradle/caches/fabric-loom/assets
-          ./gradlew runAllDatagen
-          git add --intent-to-add .
-          git diff --name-only --exit-code -- ":!:*/src/generated/resources/.cache/*"
+#      - name: Check if datagen needs to be run
+#        timeout-minutes: 3
+#        run: |
+#          mkdir -p /home/runner/.gradle/caches/fabric-loom/assets
+#          ./gradlew runAllDatagen
+#          git add --intent-to-add .
+#          git diff --name-only --exit-code -- ":!:*/src/generated/resources/.cache/*"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

@@ -31,6 +31,11 @@ caduceusModDependencies {
 }
 
 dependencies {
+    libs.clojure.also {
+        api(it)
+        include(it)
+    }
+
     modApi(libs.fabric.api)
     modImplementation(libs.fabric.loader)
 
@@ -64,6 +69,16 @@ dependencies {
         exclude(group = "net.fabricmc.fabric-api")
     }
     modImplementation(libs.modMenu)
+}
+
+clojure {
+    builds {
+        named("main") {
+            aotNamespaces.addAll(
+                "gay.object.caduceus.fabric.core",
+            )
+        }
+    }
 }
 
 publishMods {

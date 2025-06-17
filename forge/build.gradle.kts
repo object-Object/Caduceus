@@ -54,6 +54,12 @@ caduceusModDependencies {
 }
 
 dependencies {
+    libs.clojure.also {
+        api(it)
+        include(it)
+        forgeRuntimeLibrary(it)
+    }
+
     forge(libs.forge)
     modApi(libs.architectury.forge)
 
@@ -78,6 +84,16 @@ dependencies {
     libs.mixinExtras.forge.also {
         localRuntime(it)
         include(it)
+    }
+}
+
+clojure {
+    builds {
+        named("main") {
+            aotNamespaces.addAll(
+                "gay.object.caduceus.forge.core",
+            )
+        }
     }
 }
 

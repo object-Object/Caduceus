@@ -7,6 +7,7 @@ import libs
 plugins {
     java
     kotlin("jvm")
+    id("dev.clojurephant.clojure")
     id("architectury-plugin")
 }
 
@@ -35,6 +36,7 @@ repositories {
     maven { url = uri("https://maven.terraformersmc.com/releases") }
     maven { url = uri("https://maven.theillusivec4.top") } // Caelus
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge") }
+    maven { url = uri("https://repo.clojars.org") } // Clojurephant
     exclusiveContent {
         filter {
             includeGroup("maven.modrinth")

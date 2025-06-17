@@ -2,7 +2,7 @@
 
 Python web book docgen and [hexdoc](https://pypi.org/project/hexdoc) plugin for Caduceus.
 
-A Hex Casting addon that adds more features to jump iotas. Created for HexJam 2025.
+A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025.
 
 ## Version scheme
 

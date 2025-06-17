@@ -1,5 +1,5 @@
-modLoader = "kotlinforforge"
-loaderVersion = "[${versions.kotlin_forge},)"
+modLoader = "javafml"
+loaderVersion = "[${versions.forge_dependency},)"
 license = "MIT"
 
 [[mods]]
@@ -8,7 +8,7 @@ version = "${version}"
 displayName = "Caduceus"
 logoFile = "assets/caduceus/icon.png"
 authors = "object-Object"
-description = "A Hex Casting addon that adds more features to jump iotas. Created for HexJam 2025."
+description = "A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025."
 
 [[dependencies.caduceus]]
 modId = "forge"
