@@ -1,4 +1,4 @@
-(ns gay.object.caduceus.forge.ForgeCaduceus
+(ns gay.object.caduceus.forge.core
   (:import (dev.architectury.platform.forge EventBuses)
            (gay.object.caduceus Caduceus CaduceusClient)
            (net.minecraftforge.eventbus.api EventPriority)
