@@ -1,3 +1,5 @@
+import dev.clojurephant.plugin.clojure.tasks.ClojureCheck
+
 plugins {
     id("caduceus.minecraft")
 }
@@ -24,5 +26,12 @@ dependencies {
     libs.mixinExtras.common.also {
         implementation(it)
         annotationProcessor(it)
+    }
+}
+
+tasks {
+    // FIXME: remove when kotlin is gone
+    named<ClojureCheck>("checkClojure") {
+        namespaces.set(listOf())
     }
 }

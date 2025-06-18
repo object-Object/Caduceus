@@ -75,7 +75,7 @@ clojure {
     builds {
         named("main") {
             aotNamespaces.addAll(
-                "gay.object.caduceus.fabric.core",
+                "gay.object.caduceus.fabric.init",
             )
         }
     }

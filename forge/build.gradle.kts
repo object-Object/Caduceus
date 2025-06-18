@@ -91,7 +91,7 @@ clojure {
     builds {
         named("main") {
             aotNamespaces.addAll(
-                "gay.object.caduceus.forge.core",
+                "gay.object.caduceus.forge.init",
             )
         }
     }
@@ -100,12 +100,5 @@ clojure {
 tasks {
     shadowJar {
         exclude("fabric.mod.json")
-    }
-
-    named("runCommonDatagen") {
-        doFirst {
-            // avoid keeping stale generated resources
-            project(":common").delete("src/generated/resources")
-        }
     }
 }
