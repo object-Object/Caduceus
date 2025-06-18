@@ -1,8 +1,10 @@
-(ns gay.object.caduceus.component
-  (:import (net.minecraft.network.chat Component)))
+(ns gay.object.caduceus.component)
 
 (defn translatable [key & args]
-  (Component/translatable key (object-array args)))
+  (net.minecraft.network.chat.Component/translatable key (object-array args)))
+
+(defn translatable-with-fallback [key fallback]
+  (net.minecraft.network.chat.Component/translatableWithFallback key fallback))
 
 (defn join [separator coll]
   (reduce
@@ -11,3 +13,6 @@
          (.append %2))
     (.copy (first coll))
     (rest coll)))
+
+(defn red [component]
+  (.withStyle component net.minecraft.ChatFormatting/RED))

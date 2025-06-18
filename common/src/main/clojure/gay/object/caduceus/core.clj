@@ -1,10 +1,9 @@
 (ns gay.object.caduceus.core
-  (:import (net.minecraft.resources ResourceLocation)
-           (org.apache.logging.log4j LogManager Logger)))
+  (:import (org.apache.logging.log4j LogManager)))
 
 (def ^:const MODID "caduceus")
 
 (def LOGGER (LogManager/getLogger MODID))
 
 (defn id [path]
-  (ResourceLocation/new MODID path))
+  (net.minecraft.resources.ResourceLocation/new MODID path))

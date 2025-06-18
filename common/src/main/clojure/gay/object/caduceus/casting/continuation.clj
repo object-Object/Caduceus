@@ -2,11 +2,7 @@
   (:require [gay.object.caduceus.component :as component])
   (:import (at.petrak.hexcasting.api HexAPI)
            (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
-           (at.petrak.hexcasting.common.lib.hex HexContinuationTypes)
-           (net.minecraft ChatFormatting)
-           (net.minecraft.nbt Tag)
-           (net.minecraft.network.chat Component)
-           (net.minecraft.resources ResourceLocation)))
+           (at.petrak.hexcasting.common.lib.hex HexContinuationTypes)))
 
 (defn done? [cont]
   (instance? SpellContinuation$Done cont))
@@ -30,24 +26,25 @@
 (defn- frame-type-id [tag]
   (-> tag
       (.getString HexContinuationTypes/KEY_TYPE)
-      (ResourceLocation/tryParse)
+      (net.minecraft.resources.ResourceLocation/tryParse)
       (or (HexAPI/modLoc "evaluate"))))
 
 (defn- display-frame [tag]
   (let [type-id (str (frame-type-id tag))]
-    (Component/translatableWithFallback
+    (component/translatable-with-fallback
       (format "caduceus.tooltip.continuation.frame.%s" type-id)
       type-id)))
 
 (defn display [tag]
   (let [frames (as-> tag v
-                     (.getList v SpellContinuation/TAG_FRAME Tag/TAG_COMPOUND)
+                     (.getList v
+                               SpellContinuation/TAG_FRAME
+                               net.minecraft.nbt.Tag/TAG_COMPOUND)
                      (mapv display-frame v))]
-    (.withStyle
+    (component/red
       (if (empty? frames)
         (component/translatable "caduceus.tooltip.continuation.done")
-        (component/translatable "caduceus.tooltip.continuation.not_done" (component/join ", " frames)))
-      ChatFormatting/RED)))
+        (component/translatable "caduceus.tooltip.continuation.not_done" (component/join ", " frames))))))
 
 (gen-class
   :name gay.object.caduceus.casting.continuation.ContinuationUtils
