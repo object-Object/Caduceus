@@ -6,5 +6,5 @@
 
 (def ^Logger LOGGER (LogManager/getLogger MODID))
 
-(defn id ^ResourceLocation [path]
+(defn ^ResourceLocation id [path]
   (ResourceLocation/new MODID path))

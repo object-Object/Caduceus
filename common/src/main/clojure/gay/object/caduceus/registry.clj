@@ -1,10 +1,10 @@
 (ns gay.object.caduceus.registry
-  (:require [gay.object.caduceus.core :as caduceus])
+  (:require [gay.object.caduceus.core :as caduceus]
+            [gay.object.caduceus.casting.arithmetic :as arithmetic])
   (:import (at.petrak.hexcasting.api.casting ActionRegistryEntry)
            (at.petrak.hexcasting.api.casting.math HexPattern)
            (at.petrak.hexcasting.common.lib HexRegistries)
-           (at.petrak.hexcasting.common.lib.hex HexActions HexArithmetics)
-           (gay.object.caduceus.casting.arithmetic ContinuationArithmetic)))
+           (at.petrak.hexcasting.common.lib.hex HexActions HexArithmetics)))
 
 (defrecord Registrar [get-registry-key get-registry entries])
 
@@ -46,4 +46,4 @@
   (->Registrar
     (fn [] HexRegistries/ARITHMETIC)
     (fn [] HexArithmetics/REGISTRY)
-    {:continuation (make-entry "continuation" ContinuationArithmetic/INSTANCE)}))
+    {:continuation (make-lazy-entry "continuation" arithmetic/continuation-arithmetic)}))

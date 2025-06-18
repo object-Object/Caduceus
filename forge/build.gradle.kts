@@ -87,16 +87,6 @@ dependencies {
     }
 }
 
-clojure {
-    builds {
-        named("main") {
-            aotNamespaces.addAll(
-                "gay.object.caduceus.forge.init",
-            )
-        }
-    }
-}
-
 tasks {
     shadowJar {
         exclude("fabric.mod.json")

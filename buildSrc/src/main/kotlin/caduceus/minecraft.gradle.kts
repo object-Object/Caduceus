@@ -57,3 +57,12 @@ sourceSets {
         }
     }
 }
+
+clojure {
+    builds {
+        named("main") {
+            // we need to precompile everything, otherwise it won't be remapped
+            aotAll()
+        }
+    }
+}

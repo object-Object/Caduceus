@@ -1,6 +1,6 @@
 package gay.object.caduceus.mixin;
 
-import gay.object.caduceus.casting.iota.ContinuationUtils;
+import gay.object.caduceus.casting.continuation.ContinuationUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinContinuationIotaType {
     @Inject(method = "display", at = @At("HEAD"), cancellable = true)
     private void caduceus$betterDisplay(Tag tag, CallbackInfoReturnable<Component> cir) {
-        var component = ContinuationUtils.displayContinuation(tag);
+        var component = ContinuationUtils.display(tag);
         cir.setReturnValue(component);
     }
 }

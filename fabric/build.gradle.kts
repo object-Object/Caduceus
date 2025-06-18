@@ -71,16 +71,6 @@ dependencies {
     modImplementation(libs.modMenu)
 }
 
-clojure {
-    builds {
-        named("main") {
-            aotNamespaces.addAll(
-                "gay.object.caduceus.fabric.init",
-            )
-        }
-    }
-}
-
 publishMods {
     // this fails if we do it for all projects, since the tag already exists :/
     // see https://github.com/modmuss50/mod-publish-plugin/issues/3

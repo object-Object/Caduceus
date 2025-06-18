@@ -13,10 +13,7 @@
     tooltip: {
       continuation: {
         done: "[Jump -> Done]",
-        not_done: {
-          one: "[Jump -> NotDone(%s)]",
-          many: "[Jump -> NotDone(%s, ...)]",
-        },
+        not_done: "[Jump -> NotDone(%s)]",
 
         frame: {
           "hexcasting:": {

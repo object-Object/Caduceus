@@ -65,8 +65,20 @@ kotlin {
     jvmToolchain(javaVersion)
 }
 
+clojure {
+    builds {
+        named("main") {
+            // remove java from clojure classpath to prevent circular dependency
+            classpath.setFrom(sourceSets.main.map { it.compileClasspath })
+        }
+    }
+}
+
 tasks {
     compileJava {
+        // allow importing clojure classes from java
+        classpath += files(sourceSets.main.map { it.clojure.classesDirectory })
+
         options.apply {
             encoding = "UTF-8"
             release = javaVersion
