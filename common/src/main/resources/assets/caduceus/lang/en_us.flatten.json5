@@ -32,7 +32,6 @@
         class: {
           continuation: "a jump",
         },
-        continuation_or_list: "a jump or list",
       },
     },
   },

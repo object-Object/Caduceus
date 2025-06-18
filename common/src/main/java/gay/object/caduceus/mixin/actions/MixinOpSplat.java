@@ -4,9 +4,7 @@ import at.petrak.hexcasting.api.casting.castables.ConstMediaAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.ContinuationIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
-import at.petrak.hexcasting.api.casting.iota.ListIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
-import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs;
 import at.petrak.hexcasting.common.casting.actions.lists.OpSplat;
 import gay.object.caduceus.casting.actions.mixin.OpSplatContinuation;
@@ -31,8 +29,6 @@ public abstract class MixinOpSplat implements ConstMediaAction {
         var datum = args.get(0);
         if (datum instanceof ContinuationIota iota) {
             cir.setReturnValue(OpSplatContinuation.execute(iota.getContinuation()));
-        } else if (!(datum instanceof ListIota)) {
-            throw MishapInvalidIota.of(datum, getArgc() - 1, "continuation_or_list");
         }
     }
 }
