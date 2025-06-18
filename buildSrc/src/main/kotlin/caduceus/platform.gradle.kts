@@ -82,12 +82,6 @@ tasks {
     jar {
         archiveClassifier = "dev"
     }
-
-    kotlinSourcesJar {
-        val commonSources = project(":common").tasks.kotlinSourcesJar
-        dependsOn(commonSources)
-        from(commonSources.flatMap { it.archiveFile }.map(::zipTree))
-    }
 }
 
 publishMods {
@@ -111,7 +105,6 @@ publishMods {
         accessToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
         projectId = curseforgeId
         minecraftVersions.add(minecraftVersion)
-        // TODO: update if your mod is only client-side or server-side!
         clientRequired = true
         serverRequired = true
     }

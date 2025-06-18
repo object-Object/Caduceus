@@ -1,13 +1,13 @@
 (ns gay.object.caduceus.component
-  (:import (net.minecraft.network.chat Component MutableComponent)))
+  (:import (net.minecraft.network.chat Component)))
 
-(defn ^MutableComponent translatable [^String key & args]
+(defn translatable [key & args]
   (Component/translatable key (object-array args)))
 
-(defn ^MutableComponent join [^String separator coll]
+(defn join [separator coll]
   (reduce
     #(-> %1
          (.append separator)
-         (.append ^Component %2))
+         (.append %2))
     (.copy (first coll))
     (rest coll)))

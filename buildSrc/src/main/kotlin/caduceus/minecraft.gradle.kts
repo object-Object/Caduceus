@@ -49,20 +49,8 @@ dependencies {
 
 sourceSets {
     main {
-        kotlin {
-            srcDir(file("src/main/java"))
-        }
         resources {
             srcDir(file("src/generated/resources"))
-        }
-    }
-}
-
-clojure {
-    builds {
-        named("main") {
-            // we need to precompile everything, otherwise it won't be remapped
-            aotAll()
         }
     }
 }

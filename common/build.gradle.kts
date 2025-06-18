@@ -7,8 +7,8 @@ architectury {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(kotlin("reflect"))
+    // otherwise clojure fails to compile because hex uses kotlin
+    compileOnly(libs.kotlin.stdlib)
 
     implementation(libs.clojure)
 
@@ -18,8 +18,6 @@ dependencies {
     modApi(libs.architectury)
 
     modApi(libs.hexcasting.common)
-
-    modApi(libs.clothConfig.common)
 
     libs.mixinExtras.common.also {
         implementation(it)

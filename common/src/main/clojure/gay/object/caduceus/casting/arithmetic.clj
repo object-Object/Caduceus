@@ -1,7 +1,7 @@
 (ns gay.object.caduceus.casting.arithmetic
   (:require [gay.object.caduceus.casting.continuation :as continuation])
   (:import (at.petrak.hexcasting.api.casting.arithmetic Arithmetic)
-           (at.petrak.hexcasting.api.casting.arithmetic.operator OperatorBasic OperatorBinary OperatorUnary)
+           (at.petrak.hexcasting.api.casting.arithmetic.operator OperatorBasic)
            (at.petrak.hexcasting.api.casting.arithmetic.predicates IotaMultiPredicate IotaPredicate)
            (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation)
            (at.petrak.hexcasting.api.casting.iota ContinuationIota DoubleIota)

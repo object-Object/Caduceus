@@ -1,11 +1,10 @@
 (ns gay.object.caduceus.casting.continuation
-  (:require [clojure.string :as str]
-            [gay.object.caduceus.component :as component])
+  (:require [gay.object.caduceus.component :as component])
   (:import (at.petrak.hexcasting.api HexAPI)
            (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
            (at.petrak.hexcasting.common.lib.hex HexContinuationTypes)
            (net.minecraft ChatFormatting)
-           (net.minecraft.nbt CompoundTag Tag)
+           (net.minecraft.nbt Tag)
            (net.minecraft.network.chat Component)
            (net.minecraft.resources ResourceLocation)))
 
@@ -28,19 +27,19 @@
        (conj acc (.getFrame cont))
        (.getNext cont)))))
 
-(defn- frame-type-id [^CompoundTag tag]
+(defn- frame-type-id [tag]
   (-> tag
       (.getString HexContinuationTypes/KEY_TYPE)
       (ResourceLocation/tryParse)
       (or (HexAPI/modLoc "evaluate"))))
 
-(defn- display-frame [^CompoundTag tag]
+(defn- display-frame [tag]
   (let [type-id (str (frame-type-id tag))]
     (Component/translatableWithFallback
       (format "caduceus.tooltip.continuation.frame.%s" type-id)
       type-id)))
 
-(defn display [^CompoundTag tag]
+(defn display [tag]
   (let [frames (as-> tag v
                      (.getList v SpellContinuation/TAG_FRAME Tag/TAG_COMPOUND)
                      (mapv display-frame v))]
@@ -52,6 +51,8 @@
 
 (gen-class
   :name gay.object.caduceus.casting.continuation.ContinuationUtils
-  :methods [^:static [display [net.minecraft.nbt.Tag] net.minecraft.network.chat.Component]])
+  :methods [^:static [display
+                      [net.minecraft.nbt.Tag]
+                      net.minecraft.network.chat.Component]])
 
 (defn -display [tag] (display tag))

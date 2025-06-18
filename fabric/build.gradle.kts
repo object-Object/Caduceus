@@ -39,8 +39,6 @@ dependencies {
     modApi(libs.fabric.api)
     modImplementation(libs.fabric.loader)
 
-    modImplementation(libs.kotlin.fabric)
-
     modApi(libs.architectury.fabric) {
         // Fix for the "two fabric loaders" loading crash
         exclude(group = "net.fabricmc", module = "fabric-loader")
@@ -58,17 +56,17 @@ dependencies {
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
     modLocalRuntime(libs.inline.fabric) { isTransitive = false }
+    modLocalRuntime(libs.kotlin.fabric)
+    modLocalRuntime(libs.clothConfig.fabric) {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
+    modLocalRuntime(libs.modMenu)
 
     libs.mixinExtras.fabric.also {
         localRuntime(it)
         include(it)
         annotationProcessor(it)
     }
-
-    modApi(libs.clothConfig.fabric) {
-        exclude(group = "net.fabricmc.fabric-api")
-    }
-    modImplementation(libs.modMenu)
 }
 
 publishMods {

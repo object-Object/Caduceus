@@ -6,7 +6,6 @@ import libs
 
 plugins {
     java
-    kotlin("jvm")
     id("dev.clojurephant.clojure")
     id("architectury-plugin")
 }
@@ -58,11 +57,6 @@ repositories {
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
     withSourcesJar()
-    withJavadocJar()
-}
-
-kotlin {
-    jvmToolchain(javaVersion)
 }
 
 clojure {
@@ -70,6 +64,16 @@ clojure {
         named("main") {
             // remove java from clojure classpath to prevent circular dependency
             classpath.setFrom(sourceSets.main.map { it.compileClasspath })
+
+            // compile everything ahead of time so it can be remapped
+            aotAll()
+
+            compiler {
+                directLinking = true
+
+                // don't stringify classnames that need to be remapped
+                elideMeta.add("tag")
+            }
         }
     }
 }

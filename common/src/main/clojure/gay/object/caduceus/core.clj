@@ -4,7 +4,7 @@
 
 (def ^:const MODID "caduceus")
 
-(def ^Logger LOGGER (LogManager/getLogger MODID))
+(def LOGGER (LogManager/getLogger MODID))
 
-(defn ^ResourceLocation id [path]
+(defn id [path]
   (ResourceLocation/new MODID path))
