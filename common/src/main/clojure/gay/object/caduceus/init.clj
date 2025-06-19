@@ -4,8 +4,9 @@
 
 (defn init [init-registry]
   (.info caduceus/LOGGER "Making Iris' Gambit even more confusing...")
-  (doseq [registrar [registry/ACTIONS
-                     registry/ARITHMETICS]]
+  (doseq [registrar [registry/actions
+                     registry/arithmetics
+                     registry/continuation-types]]
     (init-registry registrar)))
 
 (defn init-client [])

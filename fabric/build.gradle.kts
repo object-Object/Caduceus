@@ -36,6 +36,9 @@ dependencies {
         include(it)
     }
 
+    // hex uses kotlin, so we need its types too
+    api(libs.kotlin.stdlib)
+
     modApi(libs.fabric.api)
     modImplementation(libs.fabric.loader)
 

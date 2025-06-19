@@ -17,7 +17,7 @@
   :implements [net.fabricmc.api.ModInitializer]
   :prefix FabricCaduceus-)
 
-(defn FabricCaduceus-onInitialize [_]
+(defn FabricCaduceus-onInitialize [_this]
   (caduceus.init/init init-registry))
 
 (gen-class
@@ -25,5 +25,5 @@
   :implements [net.fabricmc.api.ClientModInitializer]
   :prefix FabricCaduceusClient-)
 
-(defn FabricCaduceusClient-onInitializeClient [_]
+(defn FabricCaduceusClient-onInitializeClient [_this]
   (caduceus.init/init-client))

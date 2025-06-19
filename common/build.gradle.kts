@@ -7,10 +7,10 @@ architectury {
 }
 
 dependencies {
-    // otherwise clojure fails to compile because hex uses kotlin
-    compileOnly(libs.kotlin.stdlib)
+    api(libs.clojure)
 
-    implementation(libs.clojure)
+    // hex uses kotlin, so we need its types too
+    api(libs.kotlin.stdlib)
 
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader

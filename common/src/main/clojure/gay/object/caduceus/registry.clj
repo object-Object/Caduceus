@@ -1,10 +1,12 @@
 (ns gay.object.caduceus.registry
   (:require [gay.object.caduceus.core :as caduceus]
-            [gay.object.caduceus.casting.arithmetic :as arithmetic])
+            [gay.object.caduceus.casting.actions.delimcc :as actions.delimcc]
+            [gay.object.caduceus.casting.arithmetic :as arithmetic]
+            [gay.object.caduceus.casting.eval.vm.frames :as frames])
   (:import (at.petrak.hexcasting.api.casting ActionRegistryEntry)
-           (at.petrak.hexcasting.api.casting.math HexPattern)
+           (at.petrak.hexcasting.api.casting.math HexDir HexPattern)
            (at.petrak.hexcasting.common.lib HexRegistries)
-           (at.petrak.hexcasting.common.lib.hex HexActions HexArithmetics)))
+           (at.petrak.hexcasting.common.lib.hex HexActions HexArithmetics HexContinuationTypes)))
 
 (defrecord Registrar [get-registry-key get-registry entries])
 
@@ -33,17 +35,24 @@
 
 (defn- make-action [name start-dir signature action]
   (make-entry name (ActionRegistryEntry/new
-                     (HexPattern/fromAngles start-dir signature)
+                     (HexPattern/fromAngles signature start-dir)
                      action)))
 
-(def ACTIONS
+(def actions
   (->Registrar
     (fn [] HexRegistries/ACTION)
     (fn [] HexActions/REGISTRY)
-    {}))
+    {:prompt (make-action "eval/prompt" HexDir/EAST "wdeaqe" actions.delimcc/op-prompt)
+     :control (make-action "eval/control" HexDir/WEST "waqdeq" actions.delimcc/op-control)}))
 
-(def ARITHMETICS
+(def arithmetics
   (->Registrar
     (fn [] HexRegistries/ARITHMETIC)
     (fn [] HexArithmetics/REGISTRY)
     {:continuation (make-lazy-entry "continuation" arithmetic/continuation-arithmetic)}))
+
+(def continuation-types
+  (->Registrar
+    (fn [] HexRegistries/CONTINUATION_TYPE)
+    (fn [] HexContinuationTypes/REGISTRY)
+    {:prompt (make-entry "prompt" frames/prompt-frame-type)}))

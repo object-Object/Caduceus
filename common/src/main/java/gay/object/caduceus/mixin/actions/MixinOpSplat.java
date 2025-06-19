@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs;
 import at.petrak.hexcasting.common.casting.actions.lists.OpSplat;
-import gay.object.caduceus.casting.actions.mixin.OpSplatContinuation;
+import gay.object.caduceus.casting.actions.mixins.OpSplatContinuation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

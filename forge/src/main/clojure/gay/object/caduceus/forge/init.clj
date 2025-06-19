@@ -27,7 +27,7 @@
               (fn [^ResourceLocation id value]
                 (.register helper id value)))))))))
 
-(defn init-client [^FMLClientSetupEvent _]
+(defn init-client [^FMLClientSetupEvent _event]
   (caduceus.init/init-client))
 
 (gen-class

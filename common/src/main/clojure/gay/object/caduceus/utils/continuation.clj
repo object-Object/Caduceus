@@ -1,5 +1,5 @@
-(ns gay.object.caduceus.casting.continuation
-  (:require [gay.object.caduceus.component :as component])
+(ns gay.object.caduceus.utils.continuation
+  (:require [gay.object.caduceus.utils.component :as component])
   (:import (at.petrak.hexcasting.api HexAPI)
            (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
            (at.petrak.hexcasting.common.lib.hex HexContinuationTypes)))

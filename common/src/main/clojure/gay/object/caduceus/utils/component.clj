@@ -1,4 +1,4 @@
-(ns gay.object.caduceus.component)
+(ns gay.object.caduceus.utils.component)
 
 (defn translatable [key & args]
   (net.minecraft.network.chat.Component/translatable key (object-array args)))

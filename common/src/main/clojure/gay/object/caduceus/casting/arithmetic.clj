@@ -1,5 +1,5 @@
 (ns gay.object.caduceus.casting.arithmetic
-  (:require [gay.object.caduceus.casting.continuation :as continuation])
+  (:require [gay.object.caduceus.utils.continuation :as continuation])
   (:import (at.petrak.hexcasting.api.casting.arithmetic Arithmetic)
            (at.petrak.hexcasting.api.casting.arithmetic.operator OperatorBasic)
            (at.petrak.hexcasting.api.casting.arithmetic.predicates IotaMultiPredicate IotaPredicate)
@@ -14,7 +14,7 @@
   (proxy
     [OperatorBasic]
     [n (all-of-type HexIotaTypes/CONTINUATION)]
-    (apply [iotas _]
+    (apply [iotas _env]
       (as-> iotas v
             (mapv #(.getContinuation %) v)
             (apply op v)
@@ -30,12 +30,12 @@
 (defn continuation-arithmetic []
   (reify
     Arithmetic
-    (arithName [_] "continuation_ops")
-    (opTypes [_] [Arithmetic/ABS
-                  Arithmetic/ADD
-                  Arithmetic/CONS
-                  Arithmetic/UNCONS])
-    (getOperator [_ pattern]
+    (arithName [_this] "continuation_ops")
+    (opTypes [_this] [Arithmetic/ABS
+                      Arithmetic/ADD
+                      Arithmetic/CONS
+                      Arithmetic/UNCONS])
+    (getOperator [_this pattern]
       (condp = pattern
         Arithmetic/ABS (make1
                          (fn [cont]

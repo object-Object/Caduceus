@@ -16,6 +16,9 @@
         not_done: "[Jump -> NotDone(%s)]",
 
         frame: {
+          "caduceus:": {
+            prompt: "Prompt",
+          },
           "hexcasting:": {
             evaluate: "Evaluate",
             foreach: "ForEach",
@@ -27,6 +30,15 @@
   },
 
   hexcasting: {
+    /* TODO: names
+    action: {
+      "caduceus:": {
+        "eval/prompt": "",
+        "eval/control": "",
+      },
+    },
+    */
+
     mishap: {
       invalid_value: {
         class: {

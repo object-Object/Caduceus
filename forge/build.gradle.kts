@@ -60,6 +60,9 @@ dependencies {
         forgeRuntimeLibrary(it)
     }
 
+    // hex uses kotlin, so we need its types too
+    api(libs.kotlin.stdlib)
+
     forge(libs.forge)
     modApi(libs.architectury.forge)
 
