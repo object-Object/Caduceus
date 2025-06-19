@@ -30,10 +30,12 @@
       (or (HexAPI/modLoc "evaluate"))))
 
 (defn- display-frame [tag]
-  (let [type-id (str (frame-type-id tag))]
-    (component/translatable-with-fallback
-      (format "caduceus.tooltip.continuation.frame.%s" type-id)
-      type-id)))
+  (let [type-id (-> tag frame-type-id str)]
+    (component/hover
+     (component/translatable-with-fallback
+       (format "caduceus.tooltip.continuation.frame.%s" type-id)
+       type-id)
+     (-> type-id component/literal component/dark-gray))))
 
 (defn display [tag]
   (let [frames (as-> tag v
