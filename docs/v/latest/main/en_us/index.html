@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/object-Object/Caduceus/tree/28d311494f87d73a4d0907b3868a243b6808fae3"
+      href="https://github.com/object-Object/Caduceus/tree/d6c414e9c83f31b71d70735d2d7a695229936b1b"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -155,6 +155,49 @@
     > Caduceus Changes</a></li>
       </ul>
     </details>
+    <details class="toc-category">
+      <summary><a href="#casting" class="toc-elem "><img
+      title="Oak Staff"
+      alt="Oak Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/oak.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Hex Casting</a></summary>
+      <ul>
+          <li><a href="#casting/continuations" class="toc-elem "><img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > A Primer On Continuations</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#patterns" class="toc-elem "><img
+      title="Bookshelf"
+      alt="Bookshelf"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > Patterns</a></summary>
+      <ul>
+          <li><a href="#patterns/delimited_jumps" class="toc-elem "><img
+      title="Respawn Anchor"
+      alt="Respawn Anchor"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/respawn_anchor_0.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > Delimited Jumps</a></li>
+          <li><a href="#patterns/jump_manipulation" class="toc-elem "><img
+      title="Purpur Slab"
+      alt="Purpur Slab"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/purpur_slab.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > Jump Manipulation</a></li>
+      </ul>
+    </details>
 </nav>
   <main class="book-body">
 <section id="basics">
@@ -192,7 +235,687 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
-    <p>WIP.</p><p></p><p class="fake-li " style="--level: 1;">Improved jump iota display.</p>
+    <p>I have noticed some changes to the behavior of certain <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc">meta-evaluation techniques</a> as of late.</p><p>Jump iotas are no longer entirely opaque to me - I can now see the <a href="#patterns/jump_manipulation">components</a> that make them up, although I have not yet managed to isolate one.</p><p>Additionally, it seems <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/mishaps">Too Many Iotas</a> mishaps have become more common when working with jump iotas. I should take care not to delve too deep.</p>
+<br />
+</div>
+</section>
+<section id="casting">
+    <h2 class="category-title page-header">
+    <img
+      title="Oak Staff"
+      alt="Oak Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/oak.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Hex Casting<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>I&#39;ve started to understand how the old masters cast their <span style="color: #b38ef3">Hexes</span>! It&#39;s a bit complicated, but I&#39;m sure I can figure it out. Let&#39;s see...</p>
+<div id="casting/continuations" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >A Primer On Continuations<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting/continuations"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>As with <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/vectors">vectors</a> for more mundane tasks, it seems I will need a deeper understanding of jump iotas (also called continuations) if I am to make the most of my new discoveries. I have collected some &#34;light reading material&#34; on the topic.</p>
+<br />
+      <p>First, an encyclopedia entry on the concept of &#34;first-class continuations&#34;, the abstract concept embodied by jump iotas. It also discusses the &#34;call/cc&#34; operator, which is roughly equivalent to <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">Iris&#39; Gambit</span></a>.</p>
+  <h4 class="linkout">
+    <a href="https://en.wikipedia.org/wiki/First-class_continuations" target="_blank">Wikipedia</a>
+  </h4>
+<br />
+      <p>Next, a blog post on &#34;delimited continuations&#34;, with some concrete examples that may be feasible to rewrite as <span style="color: #b38ef3">Hexes</span> for practice. I may find this useful if I am having trouble understanding <a href="#patterns/delimited_jumps@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a> and <a href="#patterns/delimited_jumps@caduceus:eval/prompt"><span style="color: #fc77be">Arke&#39;s Gambit</span></a>.</p>
+  <h4 class="linkout">
+    <a href="https://groupoid.moe/posts/delim.html" target="_blank">Blog Post</a>
+  </h4>
+<br />
+      <p>Finally, if I can overlook a bit of fourth-wall breaking, this document gives an overview of the specific techniques employed by Nature to interpret my <span style="color: #b38ef3">Hexes</span>.</p>
+  <h4 class="linkout">
+    <a href="https://github.com/FallingColors/HexMod/blob/5da1bf82464d/Common/src/main/java/at/petrak/hexcasting/api/casting/eval/README.md" target="_blank">How Casting Works</a>
+  </h4>
+<br />
+</div>
+</section>
+<section id="patterns">
+    <h2 class="category-title page-header">
+    <img
+      title="Bookshelf"
+      alt="Bookshelf"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >Patterns<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>A list of all the patterns I&#39;ve discovered, as well as what they do.</p>
+<div id="patterns/delimited_jumps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Respawn Anchor"
+      alt="Respawn Anchor"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/respawn_anchor_0.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >Delimited Jumps<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/delimited_jumps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="patterns/delimited_jumps@caduceus:eval/prompt" class="">
+<h4 class="pattern-title">Thetis&#39; Gambit ([pattern] | pattern → many)<a
+    href="#patterns/delimited_jumps@caduceus:eval/prompt"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wdeaqe"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: wdeaqe</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/delimited_jumps@caduceus:eval/control" class="">
+<h4 class="pattern-title">Arke&#39;s Gambit ([pattern] | pattern → many)<a
+    href="#patterns/delimited_jumps@caduceus:eval/control"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="waqdeq"
+        data-start="west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: waqdeq</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+</div>
+<div id="patterns/jump_manipulation" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Purpur Slab"
+      alt="Purpur Slab"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/purpur_slab.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >Jump Manipulation<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/jump_manipulation"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="patterns/jump_manipulation@hexcasting:add" class="">
+<h4 class="pattern-title">Additive Distillation (jump, jump → jump)<a
+    href="#patterns/jump_manipulation@hexcasting:add"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="waaw"
+        data-start="north_east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: waaw</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:abs" class="">
+<h4 class="pattern-title">Length Purification (jump → num)<a
+    href="#patterns/jump_manipulation@hexcasting:abs"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wqaqw"
+        data-start="north_east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: wqaqw</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:splat" class="">
+<h4 class="pattern-title">Flock&#39;s Disintegration (jump → many)<a
+    href="#patterns/jump_manipulation@hexcasting:splat"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaeawq"
+        data-start="north_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: qwaeawq</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:construct" class="">
+<h4 class="pattern-title">Speaker&#39;s Distillation (jump, jump → jump)<a
+    href="#patterns/jump_manipulation@hexcasting:construct"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="ddewedd"
+        data-start="south_east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: ddewedd</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:deconstruct" class="">
+<h4 class="pattern-title">Speaker&#39;s Decomposition (jump → jump, jump)<a
+    href="#patterns/jump_manipulation@hexcasting:deconstruct"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="aaqwqaa"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: aaqwqaa</canvas>
+  </details>
+      <p></p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@jump_tags" class="">
+<h4>Jump Tags<a
+    href="#patterns/jump_manipulation@jump_tags"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+    <p>It seems the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a> is not the only place that I can store information within a <span style="color: #b38ef3">Hex</span>. In fact, I am able to hide iotas within the very concept of evaluation. I call this technique <span style="color: #8d6acc">jump tags</span>; some other texts refer to it as &#34;continuation marks&#34;.</p><p>There is one notable limitation of <span style="color: #8d6acc">jump tags</span>, however: they can only hold a single iota at a time. Unlike the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a>, even lists are too much.</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:read/mark/local" class="">
+<h4 class="pattern-title">Ewer&#39;s Reflection (→ any)<a
+    href="#patterns/jump_manipulation@caduceus:read/mark/local"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="aeaaqawd"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: aeaaqawd</canvas>
+  </details>
+      <p>Copy the iota stored in the <span style="color: #8d6acc">jump tag</span> of the current evaluation and add it to the stack.</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:read/mark/iota" class="">
+<h4 class="pattern-title">Ewer&#39;s Purification (jump → any)<a
+    href="#patterns/jump_manipulation@caduceus:read/mark/iota"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adaaddad"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adaaddad</canvas>
+  </details>
+      <p>Like <a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">Ewer&#39;s Reflection</span></a>, but the iota is read out of the top frame of a jump iota.</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:write/mark/local" class="">
+<h4 class="pattern-title">Ewer&#39;s Gambit (any →)<a
+    href="#patterns/jump_manipulation@caduceus:write/mark/local"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="dqddedwa"
+        data-start="west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: dqddedwa</canvas>
+  </details>
+      <p>Remove the top iota from the stack, and write it to the <span style="color: #8d6acc">jump tag</span> of the current evaluation.<br />As with <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:write/entity"><span style="color: #fc77be">Chronicler&#39;s Gambit</span></a>, I cannot write my own Name using this spell.</p>
+  </div>
+<br />
+    <p>I should be careful if using <a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">Ewer&#39;s Reflection</span></a> or <a href="#patterns/jump_manipulation@caduceus:write/mark/local"><span style="color: #fc77be">Ewer&#39;s Gambit</span></a> at the very end of an invocation. The tag that it reads or writes may not be the one I expect.</p>
 <br />
 </div>
 </section>
