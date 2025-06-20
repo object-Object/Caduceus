@@ -43,6 +43,7 @@
       invalid_value: {
         class: {
           continuation: "a jump",
+          continuation_mark: "a valid jump tag", // TODO: naming
         },
       },
     },

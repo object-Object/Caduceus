@@ -1,6 +1,7 @@
 (ns gay.object.caduceus.registry
   (:require [gay.object.caduceus.core :as caduceus]
-            [gay.object.caduceus.casting.actions.delimcc :as actions.delimcc]
+            [gay.object.caduceus.casting.actions.delimcc :as delimcc]
+            [gay.object.caduceus.casting.actions.marks :as marks]
             [gay.object.caduceus.casting.arithmetic :as arithmetic]
             [gay.object.caduceus.casting.eval.vm.frames :as frames])
   (:import (at.petrak.hexcasting.api.casting ActionRegistryEntry)
@@ -42,14 +43,17 @@
   (->Registrar
     (fn [] HexRegistries/ACTION)
     (fn [] HexActions/REGISTRY)
-    {:prompt (make-action "eval/prompt" HexDir/EAST "wdeaqe" actions.delimcc/op-prompt)
-     :control (make-action "eval/control" HexDir/WEST "waqdeq" actions.delimcc/op-control)}))
+    {:prompt (make-action "eval/prompt" HexDir/EAST "wdeaqe" (delimcc/->OpPrompt))
+     :control (make-action "eval/control" HexDir/WEST "waqdeq" (delimcc/->OpControl))
+     :read-iota-mark (make-action "read/mark/iota" HexDir/EAST "adaaddad" (marks/->OpReadIotaMark))
+     :read-local-mark (make-action "read/mark/local" HexDir/EAST "aeaaqawd" (marks/->OpReadLocalMark))
+     :write-local-mark (make-action "write/mark/local" HexDir/WEST "dqddedwa" (marks/->OpWriteLocalMark))}))
 
 (def arithmetics
   (->Registrar
     (fn [] HexRegistries/ARITHMETIC)
     (fn [] HexArithmetics/REGISTRY)
-    {:continuation (make-lazy-entry "continuation" arithmetic/continuation-arithmetic)}))
+    {:continuation (make-lazy-entry "continuation" arithmetic/->ContinuationArithmetic)}))
 
 (def continuation-types
   (->Registrar

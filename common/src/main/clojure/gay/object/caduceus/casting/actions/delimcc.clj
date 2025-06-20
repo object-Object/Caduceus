@@ -11,16 +11,14 @@
 ;   (3) pushes the slice taken in (1), then invokes the code argument
 ;   invoking those captured frames pushes them to the stack again
 
-(def op-prompt
-  (reify
-    Action
-    (operate [_self env image cont]
-      (.operate OpEval/INSTANCE
-                env
-                image
-                (.pushFrame cont frames/prompt-frame)))))
+(deftype OpPrompt []
+  Action
+  (operate [_this env image cont]
+    (.operate OpEval/INSTANCE
+              env
+              image
+              (.pushFrame cont frames/prompt-frame))))
 
-(def op-control
-  (reify
-    Action
-    (operate [_self env image cont])))
+(deftype OpControl []
+  Action
+  (operate [_this env image cont]))

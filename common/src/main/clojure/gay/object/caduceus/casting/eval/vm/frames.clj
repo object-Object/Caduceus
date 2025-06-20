@@ -8,23 +8,24 @@
 (declare prompt-frame-type)
 
 ; A stack marker (like FrameFinishEval) for delimited continuations.
-; TODO: does this being a singleton mess up HexDebug?
 ; TODO: implement tagged prompts?
-(def prompt-frame
-  (reify
-    ContinuationFrame
-    (breakDownwards [_this stack] (Pair/new false stack))
-    (evaluate [_this cont _level _harness]
-      (CastResult/new
-        (NullIota/new)
-        cont
-        nil
-        []
-        ResolvedPatternType/EVALUATED
-        HexEvalSounds/NOTHING))
-    (serializeToNBT [_this] (net.minecraft.nbt.CompoundTag/new))
-    (size [_this] 0)
-    (getType [_this] prompt-frame-type)))
+(deftype PromptFrame []
+  ContinuationFrame
+  (breakDownwards [_this stack] (Pair/new false stack))
+  (evaluate [_this cont _level _harness]
+        (CastResult/new
+              (NullIota/new)
+              cont
+              nil
+              []
+              ResolvedPatternType/EVALUATED
+              HexEvalSounds/NOTHING))
+  (serializeToNBT [_this] (net.minecraft.nbt.CompoundTag/new))
+  (size [_this] 0)
+  (getType [_this] prompt-frame-type))
+
+; TODO: does this being a singleton mess up HexDebug?
+(def prompt-frame (->PromptFrame))
 
 (def prompt-frame-type
   (reify

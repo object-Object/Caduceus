@@ -27,38 +27,37 @@
 
 (defn- make2 [op] (make-op 2 op))
 
-(defn continuation-arithmetic []
-  (reify
-    Arithmetic
-    (arithName [_this] "continuation_ops")
-    (opTypes [_this] [Arithmetic/ABS
-                      Arithmetic/ADD
-                      Arithmetic/CONS
-                      Arithmetic/UNCONS])
-    (getOperator [_this pattern]
-      (condp = pattern
-        Arithmetic/ABS (make1
-                         (fn [cont]
-                           (-> cont
-                               (continuation/frames)
-                               (count)
-                               (double)
-                               (DoubleIota/new))))
-        Arithmetic/ADD (make2
-                         (fn [i j]
-                           (->> i
-                                (continuation/frames '()) ; get frames in reverse order
-                                (reduce #(.pushFrame %1 %2) j))))
-        Arithmetic/CONS (make2
-                          (fn [i j]
-                            (if (continuation/not-done? j)
-                              (.pushFrame i (.getFrame j))
-                              i)))
-        Arithmetic/UNCONS (make1
-                            (fn [cont]
-                              (mapv
-                                ContinuationIota/new
-                                (if (continuation/not-done? cont)
-                                  [(.getNext cont)
-                                   (continuation/make (.getFrame cont))]
-                                  [cont cont]))))))))
+(deftype ContinuationArithmetic []
+  Arithmetic
+  (arithName [_this] "continuation_ops")
+  (opTypes [_this] [Arithmetic/ABS
+                    Arithmetic/ADD
+                    Arithmetic/CONS
+                    Arithmetic/UNCONS])
+  (getOperator [_this pattern]
+    (condp = pattern
+      Arithmetic/ABS (make1
+                       (fn [cont]
+                         (-> cont
+                             (continuation/frames)
+                             (count)
+                             (double)
+                             (DoubleIota/new))))
+      Arithmetic/ADD (make2
+                       (fn [i j]
+                         (->> i
+                              (continuation/frames '()) ; get frames in reverse order
+                              (reduce #(.pushFrame %1 %2) j))))
+      Arithmetic/CONS (make2
+                        (fn [i j]
+                          (if (continuation/not-done? j)
+                            (.pushFrame i (.getFrame j))
+                            i)))
+      Arithmetic/UNCONS (make1
+                          (fn [cont]
+                            (mapv
+                              ContinuationIota/new
+                              (if (continuation/not-done? cont)
+                                [(.getNext cont)
+                                 (continuation/make (.getFrame cont))]
+                                [cont cont])))))))

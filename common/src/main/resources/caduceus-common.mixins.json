@@ -6,8 +6,13 @@
   "client": [
   ],
   "mixins": [
-    "MixinContinuationIotaType",
-    "actions.MixinOpSplat"
+    "iota.MixinContinuationIota",
+    "iota.MixinContinuationIotaType",
+    "actions.MixinOpSplat",
+    "frames.MixinFrameEvaluate",
+    "frames.MixinFrameEvaluateType",
+    "frames.MixinFrameForEach",
+    "frames.MixinFrameForEachType"
   ],
   "injectors": {
     "defaultRequire": 1
