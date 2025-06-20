@@ -43,11 +43,7 @@
                              (count)
                              (double)
                              (DoubleIota/new))))
-      Arithmetic/ADD (make2
-                       (fn [i j]
-                         (->> i
-                              (continuation/frames '()) ; get frames in reverse order
-                              (reduce #(.pushFrame %1 %2) j))))
+      Arithmetic/ADD (make2 continuation/add)
       Arithmetic/CONS (make2
                         (fn [i j]
                           (if (continuation/not-done? j)

@@ -29,6 +29,17 @@
        (conj acc (.getFrame cont))
        (.getNext cont)))))
 
+(defn push-all
+  "Takes a sequence of frames from bottom to top, and pushes them to a continuation."
+  ([coll] (push-all SpellContinuation$Done/INSTANCE coll))
+  ([cont coll]
+   (reduce #(.pushFrame %1 %2) cont coll)))
+
+(defn add [i j]
+  (->> i
+       (frames '()) ; get frames in reverse order
+       (push-all j)))
+
 (definterface ContinuationMarkHolder
   (^at.petrak.hexcasting.api.casting.iota.Iota
     caduceus$getMark
@@ -115,13 +126,15 @@
                                      component/literal
                                      component/dark-gray)]))))
 
-(defn display [tag]
-  (->> tag
-       (#(.getList % SpellContinuation/TAG_FRAME net.minecraft.nbt.Tag/TAG_COMPOUND))
-       (mapv display-frame)
-       (component/join ", ")
-       (component/translatable "caduceus.tooltip.continuation")
-       component/red))
+(defn display
+  ([tag] (display tag "caduceus.tooltip.continuation"))
+  ([tag i18n-key]
+   (->> tag
+        (#(.getList % SpellContinuation/TAG_FRAME net.minecraft.nbt.Tag/TAG_COMPOUND))
+        (mapv display-frame)
+        (component/join ", ")
+        (component/translatable i18n-key)
+        component/red)))
 
 (gen-class
   :name gay.object.caduceus.utils.continuation.ContinuationUtils

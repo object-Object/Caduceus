@@ -59,6 +59,7 @@
     tooltip: {
       continuation: {
         "": "[Jump -> (%s)]",
+        delimited: "[Call -> (%s)]",
 
         frame: {
           mark: {
@@ -91,6 +92,7 @@
     },
 
     mishap: {
+      no_prompt: "Did not first use Thetis' Gambit",
       invalid_value: {
         class: {
           continuation: "a jump",
