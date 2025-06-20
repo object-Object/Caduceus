@@ -1,7 +1,7 @@
 (ns gay.object.caduceus.utils.casting
   (:require [gay.object.caduceus.utils.kt :as kt])
   (:import (at.petrak.hexcasting.api.casting.eval.vm CastingImage)
-           (at.petrak.hexcasting.api.casting.iota ContinuationIota Iota)
+           (at.petrak.hexcasting.api.casting.iota ContinuationIota)
            (at.petrak.hexcasting.api.casting.mishaps MishapInvalidIota MishapNotEnoughArgs)))
 
 (defn- reverse-idx [idx argc]

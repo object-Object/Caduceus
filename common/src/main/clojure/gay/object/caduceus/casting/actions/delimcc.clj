@@ -4,7 +4,6 @@
             [gay.object.caduceus.casting.mishaps.no-prompt :as no-prompt]
             [gay.object.caduceus.casting.iota.delimcc :as delimcc])
   (:import (at.petrak.hexcasting.api.casting.castables Action)
-           (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation$Done)
            (at.petrak.hexcasting.api.casting.mishaps MishapNotEnoughArgs)
            (at.petrak.hexcasting.common.casting.actions.eval OpEval)
            (gay.object.caduceus.casting.eval.vm.frames PromptFrame)
