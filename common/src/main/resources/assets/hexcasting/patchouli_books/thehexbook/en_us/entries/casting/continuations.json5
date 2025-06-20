@@ -1,0 +1,27 @@
+{
+  name: "caduceus.book.casting.continuations",
+  icon: "minecraft:book",
+  category: "hexcasting:casting",
+  advancement: "hexcasting:root",
+  pages: [
+    "caduceus.book.casting.continuations.1",
+    {
+      type: "patchouli:link",
+      text: "caduceus.book.casting.continuations.2.text",
+      link_text: "caduceus.book.casting.continuations.2.link_text",
+      url: "https://en.wikipedia.org/wiki/First-class_continuations",
+    },
+    {
+      type: "patchouli:link",
+      text: "caduceus.book.casting.continuations.3.text",
+      link_text: "caduceus.book.casting.continuations.3.link_text",
+      url: "https://groupoid.moe/posts/delim.html",
+    },
+    {
+      type: "patchouli:link",
+      text: "caduceus.book.casting.continuations.4.text",
+      link_text: "caduceus.book.casting.continuations.4.link_text",
+      url: "https://github.com/FallingColors/HexMod/blob/5da1bf82464d/Common/src/main/java/at/petrak/hexcasting/api/casting/eval/README.md",
+    },
+  ],
+}

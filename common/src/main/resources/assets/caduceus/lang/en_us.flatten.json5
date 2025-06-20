@@ -4,8 +4,54 @@
       basics: {
         caduceus_changes: {
           "": "Caduceus Changes",
-          "1": "WIP.$(br2)\
-            $(li)Improved jump iota display.",
+          "1": "I have noticed some changes to the behavior of certain $(l:patterns/meta#hexcasting:eval/cc)meta-evaluation techniques/$ as of late.$(br2)\
+            Jump iotas are no longer entirely opaque to me - I can now see the $(l:patterns/jump_manipulation)components/$ that make them up, although I have not yet managed to isolate one.$(br2)\
+            Additionally, it seems $(l:casting/mishaps)Too Many Iotas/$ mishaps have become more common when working with jump iotas. I should take care not to delve too deep.",
+        },
+      },
+      casting: {
+        continuations: {
+          "": "A Primer On Continuations",
+          "1": "As with $(l:casting/vectors)vectors/$ for more mundane tasks, it seems I will need a deeper understanding of jump iotas (also called continuations) if I am to make the most of my new discoveries. I have collected some \"light reading material\" on the topic.",
+          "2": {
+            text: "First, an encyclopedia entry on the concept of \"first-class continuations\", the abstract concept embodied by jump iotas. It also discusses the \"call/cc\" operator, which is roughly equivalent to $(l:patterns/meta#hexcasting:eval/cc)$(action)Iris' Gambit/$.",
+            link_text: "Wikipedia",
+          },
+          "3": {
+            text: "Next, a blog post on \"delimited continuations\", with some concrete examples that may be feasible to rewrite as _Hexes for practice. I may find this useful if I am having trouble understanding $(l:patterns/delimited_jumps#caduceus:eval/prompt)$(action)Thetis' Gambit/$ and $(l:patterns/delimited_jumps#caduceus:eval/prompt)$(action)Arke's Gambit/$.",
+            link_text: "Blog Post",
+          },
+          "4": {
+            text: "Finally, if I can overlook a bit of fourth-wall breaking, this document gives an overview of the specific techniques employed by Nature to interpret my _Hexes.",
+            link_text: "How Casting Works",
+          },
+        },
+      },
+      patterns: {
+        delimited_jumps: {
+          "": "Delimited Jumps",
+          "eval/prompt": "",
+          "eval/control": "",
+        },
+        jump_manipulation: {
+          "": "Jump Manipulation",
+          add: "",
+          abs: "",
+          splat: "",
+          construct: "",
+          deconstruct: "",
+          jump_tags: {
+            title: "Jump Tags",
+            text: "It seems the $(l:patterns/readwrite#hexcasting:local)$(thing)ravenmind/$ is not the only place that I can store information within a _Hex. In fact, I am able to hide iotas within the very concept of evaluation. I call this technique $(thing)jump tags/$; some other texts refer to it as \"continuation marks\".$(br2)\
+              There is one notable limitation of $(thing)jump tags/$, however: they can only hold a single iota at a time. Unlike the $(l:patterns/readwrite#hexcasting:local)$(thing)ravenmind/$, even lists are too much."
+          },
+          "read/mark/local": "Copy the iota stored in the $(thing)jump tag/$ of the current evaluation and add it to the stack.",
+          "read/mark/iota": "Like $(l:patterns/jump_manipulation#caduceus:read/mark/local)$(action)Ewer's Reflection/$, but the iota is read out of the top frame of a jump iota.",
+          "write/mark/local": {
+            "1": "Remove the top iota from the stack, and write it to the $(thing)jump tag/$ of the current evaluation.$(br)\
+              As with $(l:patterns/readwrite#hexcasting:write/entity)$(action)Chronicler's Gambit/$, I cannot write my own Name using this spell.",
+            "2": "I should be careful if using $(l:patterns/jump_manipulation#caduceus:read/mark/local)$(action)Ewer's Reflection/$ or $(l:patterns/jump_manipulation#caduceus:write/mark/local)$(action)Ewer's Gambit/$ at the very end of an invocation. The tag that it reads or writes may not be the one I expect.",
+          },
         },
       },
     },
@@ -30,20 +76,21 @@
   },
 
   hexcasting: {
-    /* TODO: names
     action: {
       "caduceus:": {
-        "eval/prompt": "",
-        "eval/control": "",
+        "eval/prompt": "Thetis' Gambit",
+        "eval/control": "Arke's Gambit",
+        "read/mark/local": "Ewer's Reflection",
+        "read/mark/iota": "Ewer's Purification",
+        "write/mark/local": "Ewer's Gambit",
       },
     },
-    */
 
     mishap: {
       invalid_value: {
         class: {
           continuation: "a jump",
-          continuation_mark: "a valid jump tag", // TODO: naming
+          continuation_mark: "a valid jump tag",
         },
       },
     },
