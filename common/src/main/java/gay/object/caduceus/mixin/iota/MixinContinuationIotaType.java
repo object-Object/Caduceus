@@ -1,6 +1,6 @@
 package gay.object.caduceus.mixin.iota;
 
-import gay.object.caduceus.casting.continuation.ContinuationUtils;
+import gay.object.caduceus.utils.continuation.ContinuationUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;

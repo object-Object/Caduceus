@@ -16,8 +16,13 @@
      #(-> %1
           (.append separator)
           (.append %2))
-     (.copy (first coll))
+     (if-let [v (first coll)]
+       (.copy v)
+       (literal ""))
      (rest coll))))
+
+(defn join-some [separator coll]
+  (join separator (filterv some? coll)))
 
 (defn- hover-event [hover-component]
   (net.minecraft.network.chat.HoverEvent/new
@@ -33,3 +38,9 @@
 
 (defn dark-gray [component]
   (.withStyle component net.minecraft.ChatFormatting/DARK_GRAY))
+
+(defn blue [component]
+  (.withStyle component net.minecraft.ChatFormatting/BLUE))
+
+(defn italic [component]
+  (.withStyle component net.minecraft.ChatFormatting/ITALIC))

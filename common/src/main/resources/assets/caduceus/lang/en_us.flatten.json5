@@ -58,10 +58,14 @@
 
     tooltip: {
       continuation: {
-        done: "[Jump -> Done]",
-        not_done: "[Jump -> NotDone(%s)]",
+        "": "[Jump -> (%s)]",
 
         frame: {
+          mark: {
+            inline: "%s*",
+            hover: "Contains: %s",
+          },
+
           "caduceus:": {
             prompt: "Prompt",
           },

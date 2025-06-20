@@ -1,9 +1,11 @@
 (ns gay.object.caduceus.utils.continuation
-  (:require [gay.object.caduceus.utils.component :as component])
+  (:require [clojure.string :as str]
+            [gay.object.caduceus.utils.component :as component])
   (:import (at.petrak.hexcasting.api HexAPI)
-           (at.petrak.hexcasting.api.casting.eval.vm ContinuationFrame SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
-           (at.petrak.hexcasting.api.casting.iota Iota NullIota)
-           (at.petrak.hexcasting.common.lib.hex HexContinuationTypes)))
+           (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
+           (at.petrak.hexcasting.api.casting.iota IotaType NullIota)
+           (at.petrak.hexcasting.common.lib.hex HexContinuationTypes HexIotaTypes)
+           (dev.architectury.platform Platform)))
 
 (defn done? [cont]
   (instance? SpellContinuation$Done cont))
@@ -39,20 +41,22 @@
 
 ; CURSED
 ; we catch IllegalArgumentException instead of just checking instance? so other addons can add support without depending on us
-(defn get-frame-mark [frame]
-  (try
-    (.caduceus$getMark frame)
-    (catch IllegalArgumentException _ (NullIota/new))))
+(defn get-frame-mark
+  ([frame] (get-frame-mark frame nil))
+  ([frame not-found]
+   (try
+     (.caduceus$getMark frame)
+     (catch IllegalArgumentException _ not-found))))
+
+(defn get-mark [cont]
+  (if-let [frame (frame cont)]
+    (get-frame-mark frame (NullIota/new))
+    (NullIota/new)))
 
 (defn with-frame-mark [frame iota]
   (try
     (.caduceus$withMark frame iota)
     (catch IllegalArgumentException _ frame)))
-
-(defn get-mark [cont]
-  (if-let [frame (frame cont)]
-    (get-frame-mark frame)
-    (NullIota/new)))
 
 (defn with-mark [cont mark]
   (if-let [frame (frame cont)]
@@ -61,35 +65,76 @@
       (with-frame-mark frame mark))
     cont))
 
-(defn- frame-type-id [tag]
+(defn- frame-tag-type-id [tag]
   (-> tag
       (.getString HexContinuationTypes/KEY_TYPE)
       (net.minecraft.resources.ResourceLocation/tryParse)
       (or (HexAPI/modLoc "evaluate"))))
 
+(def MARK-TAG "caduceus:mark")
+
+(defn- get-frame-tag-mark [tag]
+  (let [data-tag (.getCompound tag HexContinuationTypes/KEY_DATA)]
+    (if (.contains data-tag MARK-TAG net.minecraft.nbt.Tag/TAG_COMPOUND)
+      (let [mark-tag (.getCompound data-tag MARK-TAG)
+            mark-type (.getString mark-tag HexIotaTypes/KEY_TYPE)]
+        (when-not (= mark-type "hexcasting:null")
+          mark-tag)))))
+
+(defn- mod-name [id]
+  (if-let [mod (-> id Platform/getOptionalMod (.orElse nil))]
+    (.getName mod)
+    (as-> id v
+          (str/split v #"_")
+          (map str/capitalize v)
+          (str/join " " v))))
+
 (defn- display-frame [tag]
-  (let [type-id (-> tag frame-type-id str)]
+  (let [type-id (frame-tag-type-id tag)
+        type-str (str type-id)
+        mark-tag (get-frame-tag-mark tag)
+        name (component/translatable-with-fallback
+               (format "caduceus.tooltip.continuation.frame.%s" type-str)
+               type-str)]
     (component/hover
-     (component/translatable-with-fallback
-       (format "caduceus.tooltip.continuation.frame.%s" type-id)
-       type-id)
-     (-> type-id component/literal component/dark-gray))))
+      (if mark-tag
+        (component/translatable "caduceus.tooltip.continuation.frame.mark.inline" name)
+        name)
+      (component/join-some "\n" [name
+                                 (when mark-tag
+                                   (component/translatable
+                                     "caduceus.tooltip.continuation.frame.mark.hover"
+                                     (IotaType/getDisplay mark-tag)))
+                                 (-> type-id
+                                     .getNamespace
+                                     mod-name
+                                     component/literal
+                                     component/blue
+                                     component/italic)
+                                 (-> type-str
+                                     component/literal
+                                     component/dark-gray)]))))
 
 (defn display [tag]
-  (let [frames (as-> tag v
-                     (.getList v
-                               SpellContinuation/TAG_FRAME
-                               net.minecraft.nbt.Tag/TAG_COMPOUND)
-                     (mapv display-frame v))]
-    (component/red
-      (if (empty? frames)
-        (component/translatable "caduceus.tooltip.continuation.done")
-        (component/translatable "caduceus.tooltip.continuation.not_done" (component/join ", " frames))))))
+  (->> tag
+       (#(.getList % SpellContinuation/TAG_FRAME net.minecraft.nbt.Tag/TAG_COMPOUND))
+       (mapv display-frame)
+       (component/join ", ")
+       (component/translatable "caduceus.tooltip.continuation")
+       component/red))
 
 (gen-class
-  :name gay.object.caduceus.casting.continuation.ContinuationUtils
-  :methods [^:static [display
+  :name gay.object.caduceus.utils.continuation.ContinuationUtils
+  :methods [^:static [getMarkTagKey [] String]
+            ^:static [display
                       [net.minecraft.nbt.Tag]
-                      net.minecraft.network.chat.Component]])
+                      net.minecraft.network.chat.Component]
+            ^:static [^{org.jetbrains.annotations.Nullable {}} getFrameMark
+                      [at.petrak.hexcasting.api.casting.eval.vm.ContinuationFrame]
+                      at.petrak.hexcasting.api.casting.iota.Iota]])
+
+(defn -getMarkTagKey [] MARK-TAG)
 
 (defn -display [tag] (display tag))
+
+(defn -getFrameMark [frame] (get-frame-mark frame))
