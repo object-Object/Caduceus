@@ -34,7 +34,7 @@
 
 (deftype OpWriteLocalMark []
   Action
-  (operate [_this _env image cont]
+  (operate [_this env image cont]
     (let [stack (-> image .getStack vec)
           mark (last stack)]
       (cond
@@ -42,10 +42,11 @@
         (> (.size mark) 1) (throw (MishapInvalidIota/ofType mark 0 "continuation_mark")))
       (when-let [true-name (MishapOthersName/getTrueNameFromDatum mark nil)]
         (throw (MishapOthersName/new true-name)))
+      (continuation/set-mark cont mark (.getWorld env))
       (OperationResult/new
         (casting/copy-image
           (.withUsedOp image)
           :stack (pop stack))
         []
-        (continuation/with-mark cont mark)
+        cont
         HexEvalSounds/NORMAL_EXECUTE))))

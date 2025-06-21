@@ -45,36 +45,40 @@
     caduceus$getMark
     []
    "Returns the continuation mark on this frame, or NullIota if none.")
-  (^at.petrak.hexcasting.api.casting.eval.vm.ContinuationFrame
-    caduceus$withMark
+  (^void
+    caduceus$setMark
     [^at.petrak.hexcasting.api.casting.iota.Iota mark]
-   "Returns a copy of this frame with the given continuation mark."))
+   "Mutably sets the continuation mark on this frame. DO NOT CALL THIS METHOD ON SINGLETONS!"))
 
 ; CURSED
 ; we catch IllegalArgumentException instead of just checking instance? so other addons can add support without depending on us
 (defn get-frame-mark
   ([frame] (get-frame-mark frame nil))
   ([frame not-found]
-   (try
+   (if (instance? ContinuationMarkHolder frame)
      (.caduceus$getMark frame)
-     (catch IllegalArgumentException _ not-found))))
+     not-found)))
 
 (defn get-mark [cont]
   (if-let [frame (frame cont)]
     (get-frame-mark frame (NullIota/new))
     (NullIota/new)))
 
-(defn with-frame-mark [frame iota]
-  (try
-    (.caduceus$withMark frame iota)
-    (catch IllegalArgumentException _ frame)))
+(defn set-frame-mark [frame iota world]
+  (let [frame-type (.getType frame)]
+    (when (and
+            (instance? ContinuationMarkHolder frame)
+            ; CURSED: pass the frame through serialization to detect singletons
+            (-> frame
+                .serializeToNBT
+                (#(.deserializeFromNBT frame-type % world))
+                (identical? frame)
+                not))
+      (.caduceus$setMark frame iota))))
 
-(defn with-mark [cont mark]
-  (if-let [frame (frame cont)]
-    (.pushFrame
-      (.getNext cont)
-      (with-frame-mark frame mark))
-    cont))
+(defn set-mark [cont mark world]
+  (when-let [frame (frame cont)]
+    (set-frame-mark frame mark world)))
 
 (defn- frame-tag-type-id [tag]
   (-> tag
@@ -85,12 +89,11 @@
 (def MARK-TAG "caduceus:mark")
 
 (defn- get-frame-tag-mark [tag]
-  (let [data-tag (.getCompound tag HexContinuationTypes/KEY_DATA)]
-    (if (.contains data-tag MARK-TAG net.minecraft.nbt.Tag/TAG_COMPOUND)
-      (let [mark-tag (.getCompound data-tag MARK-TAG)
-            mark-type (.getString mark-tag HexIotaTypes/KEY_TYPE)]
-        (when-not (= mark-type "hexcasting:null")
-          mark-tag)))))
+  (if (.contains tag MARK-TAG net.minecraft.nbt.Tag/TAG_COMPOUND)
+    (let [mark-tag (.getCompound tag MARK-TAG)
+          mark-type (.getString mark-tag HexIotaTypes/KEY_TYPE)]
+      (when-not (= mark-type "hexcasting:null")
+        mark-tag))))
 
 (defn- mod-name [id]
   (if-let [mod (-> id Platform/getOptionalMod (.orElse nil))]
