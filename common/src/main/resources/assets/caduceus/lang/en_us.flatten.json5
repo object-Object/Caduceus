@@ -60,7 +60,7 @@
               There is one notable limitation of $(thing)jump tags/$, however: they can only hold a single iota at a time. Unlike the $(l:patterns/readwrite#hexcasting:local)$(thing)ravenmind/$, even lists are too much."
           },
           "read/mark/local": "Copy the iota stored in the $(thing)jump tag/$ of the current evaluation and add it to the stack.",
-          "read/mark/iota": "Like $(l:patterns/jump_manipulation#caduceus:read/mark/local)$(action)Ewer's Reflection/$, but the iota is read out of the top frame of a Jump iota.",
+          "read/mark/iota": "Like $(l:patterns/jump_manipulation#caduceus:read/mark/local)$(action)Ewer's Reflection/$, but the iota is read out of the $(thing)jump tag/$ of the top frame in a Jump iota.",
           "write/mark/local": {
             "1": "Remove the top iota from the stack, and write it to the $(thing)jump tag/$ of the current evaluation.$(br)\
               As with $(l:patterns/readwrite#hexcasting:write/entity)$(action)Chronicler's Gambit/$, I cannot write my own Name using this spell.",
