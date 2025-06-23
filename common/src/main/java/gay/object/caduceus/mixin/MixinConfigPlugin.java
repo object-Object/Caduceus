@@ -31,11 +31,17 @@ import java.util.function.Consumer;
 public class MixinConfigPlugin implements IMixinConfigPlugin {
     private static final Logger LOGGER = LogManager.getLogger("caduceus-mixins");
     private static final String BASE_MIXIN_CLASSNAME = "MixinAllContinuationFrames";
-    private static String mixinClassname = BASE_MIXIN_CLASSNAME;
+    private static String mixinClassname = "template." + BASE_MIXIN_CLASSNAME;
 
     @Override
     public void onLoad(String rawMixinPackage) {
         var mixinPackage = rawMixinPackage.replace('.', '/');
+
+        // :(
+        if (isForge()) {
+            LOGGER.error("Forge detected, falling back to default ContinuationFrame mixin targets :(");
+            return;
+        }
 
         LOGGER.info("Scanning class graph.");
         var graph = new ClassGraph()
@@ -49,13 +55,12 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
                 "net.fabricmc",
                 "net.minecraftforge"
             );
-        //noinspection UnreachableCode
         try (
-            // on Fabric, scan deadlocks if NOT on main thread
             // on Forge, scan is cancelled if ON main thread
-            var scanResult = ArchitecturyTarget.getCurrentTarget().equals("fabric")
-                ? graph.scan(MoreExecutors.newDirectExecutorService(), 1)
-                : graph.scan()
+            // on Fabric, scan deadlocks if NOT ON main thread
+            var scanResult = isForge()
+                ? graph.scan()
+                : graph.scan(MoreExecutors.newDirectExecutorService(), 1)
         ) {
             var targetClasses = scanResult
                 .getClassesImplementing(ContinuationFrame.class)
@@ -65,14 +70,14 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
                 );
             LOGGER.info("Target ContinuationFrame subclasses:\n  {}", String.join("\n  ", targetClasses.getNames()));
 
-            var mixinName = mixinPackage + "/" + mixinClassname;
+            var mixinName = mixinPackage + "/" + BASE_MIXIN_CLASSNAME;
             LOGGER.info("Creating mixin: {}", mixinName);
 
             var writer = new ClassWriter(0);
 
             // move mixin out of template package
             var remapper = new ClassRemapper(writer, new SimpleRemapper(
-                mixinPackage + "/template/" + mixinClassname,
+                mixinPackage + "/template/" + BASE_MIXIN_CLASSNAME,
                 mixinName
             ));
 
@@ -105,7 +110,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
 
             var node = MixinService.getService()
                 .getBytecodeProvider()
-                .getClassNode(rawMixinPackage + ".template." + mixinClassname);
+                .getClassNode(rawMixinPackage + ".template." + BASE_MIXIN_CLASSNAME);
             node.accept(visitor);
 
             // FIXME: only works on Fabric :(
@@ -142,9 +147,15 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
                 )
             );
         } catch (Throwable t) {
-            LOGGER.error("Mixin generation failed, falling back to default targets :(", t);
-            mixinClassname = "template." + BASE_MIXIN_CLASSNAME;
+            LOGGER.error("Mixin generation failed, falling back to default ContinuationFrame mixin targets :(", t);
+            return;
         }
+
+        mixinClassname = BASE_MIXIN_CLASSNAME;
+    }
+
+    private static boolean isForge() {
+        return ArchitecturyTarget.getCurrentTarget().contains("forge");
     }
 
     // see: https://github.com/Chocohead/Fabric-ASM/blob/39abe596bce4e353594bea207eae43eee181ce9c/src/com/chocohead/mm/Plugin.java
