@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/object-Object/Caduceus/tree/cf554ad2f1c4550458407b1359f4a63a2ef027bb"
+      href="https://github.com/object-Object/Caduceus/tree/73e10e1d5006a5e2810aab6fa9ae9d0a5cd7c8f3"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -170,7 +170,14 @@
       src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
       loading="lazy"
       class="item-texture  texture pixelated"
-    > A Primer On Continuations</a></li>
+    > A Primer On Jumps</a></li>
+          <li><a href="#casting/caduceus_mishaps" class="toc-elem "><img
+      title="Wither"
+      alt="Wither"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/mob_effect/wither.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Caduceus Mishaps</a></li>
       </ul>
     </details>
     <details class="toc-category">
@@ -182,7 +189,7 @@
       class="item-texture  texture "
     > Patterns</a></summary>
       <ul>
-          <li><a href="#patterns/delimited_jumps" class="toc-elem "><img
+          <li><a href="#patterns/delimcc" class="toc-elem "><img
       title="Respawn Anchor"
       alt="Respawn Anchor"
       src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/respawn_anchor_0.png"
@@ -235,7 +242,7 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
-    <p>I have noticed some changes to the behavior of certain <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc">meta-evaluation techniques</a> as of late.</p><p>Jump iotas are no longer entirely opaque to me - I can now see the <a href="#patterns/jump_manipulation">components</a> that make them up, although I have not yet managed to isolate one.</p><p>Additionally, it seems <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/mishaps">Too Many Iotas</a> mishaps have become more common when working with jump iotas. I should take care not to delve too deep.</p>
+    <p>I have noticed some changes to the behavior of certain <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc">meta-evaluation techniques</a> as of late.</p><p>Jump iotas are no longer entirely opaque to me - I can now see the <a href="#patterns/jump_manipulation">components</a> that make them up, although I have not yet managed to isolate one.</p><p>Additionally, it seems <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/mishaps">Too Many Iotas</a> mishaps have become more common when working with Jump iotas. I should take care not to delve too deep.</p>
 <br />
 </div>
 </section>
@@ -265,7 +272,7 @@
       src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
       loading="lazy"
       class="item-texture  texture pixelated"
-    >A Primer On Continuations<a
+    >A Primer On Jumps<a
     href="#table-of-contents"
     class="permalink small"
     title="Jump to top"
@@ -274,14 +281,14 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
-    <p>As with <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/vectors">vectors</a> for more mundane tasks, it seems I will need a deeper understanding of jump iotas (also called continuations) if I am to make the most of my new discoveries. I have collected some &#34;light reading material&#34; on the topic.</p>
+    <p>As with <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/vectors">vectors</a> for more mundane tasks, it seems I will need a deeper understanding of Jump iotas (also called continuations) if I am to make the most of my new discoveries. I have collected some &#34;light reading material&#34; on the topic.</p>
 <br />
-      <p>First, an encyclopedia entry on the concept of &#34;first-class continuations&#34;, the abstract concept embodied by jump iotas. It also discusses the &#34;call/cc&#34; operator, which is roughly equivalent to <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">Iris&#39; Gambit</span></a>.</p>
+      <p>First, an encyclopedia entry on the concept of &#34;first-class continuations&#34;, the abstract concept embodied by Jump iotas. It also discusses the &#34;call/cc&#34; operator, which is roughly equivalent to <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">Iris&#39; Gambit</span></a>.</p>
   <h4 class="linkout">
     <a href="https://en.wikipedia.org/wiki/First-class_continuations" target="_blank">Wikipedia</a>
   </h4>
 <br />
-      <p>Next, a blog post on &#34;delimited continuations&#34;, with some concrete examples that may be feasible to rewrite as <span style="color: #b38ef3">Hexes</span> for practice. I may find this useful if I am having trouble understanding <a href="#patterns/delimited_jumps@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a> and <a href="#patterns/delimited_jumps@caduceus:eval/prompt"><span style="color: #fc77be">Arke&#39;s Gambit</span></a>.</p>
+      <p>Next, a blog post on &#34;delimited continuations&#34;, with some concrete examples that may be feasible to rewrite as <span style="color: #b38ef3">Hexes</span> for practice. I may find this useful if I am having trouble understanding <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a> and <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Arke&#39;s Gambit</span></a>.</p>
   <h4 class="linkout">
     <a href="https://groupoid.moe/posts/delim.html" target="_blank">Blog Post</a>
   </h4>
@@ -290,6 +297,29 @@
   <h4 class="linkout">
     <a href="https://github.com/FallingColors/HexMod/blob/5da1bf82464d/Common/src/main/java/at/petrak/hexcasting/api/casting/eval/README.md" target="_blank">How Casting Works</a>
   </h4>
+<br />
+</div>
+<div id="casting/caduceus_mishaps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Wither"
+      alt="Wither"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/mob_effect/wither.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Caduceus Mishaps<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting/caduceus_mishaps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>This section documents the mishaps that can occur when manipulating Jump iotas and using delimited jumps.</p>
+<br />
+  <h4>Uncontained Arke</h4>
+    <p>I attempted to draw <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Arke&#39;s Gambit</span></a> without wrapping it in <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a>.</p>
 <br />
 </div>
 </section>
@@ -311,7 +341,7 @@
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h2>
     <p>A list of all the patterns I&#39;ve discovered, as well as what they do.</p>
-<div id="patterns/delimited_jumps" class="entry">
+<div id="patterns/delimcc" class="entry">
     <h3 class="entry-title page-header">
     <img
       title="Respawn Anchor"
@@ -324,13 +354,13 @@
     class="permalink small"
     title="Jump to top"
   ><i class="bi bi-box-arrow-up"></i></a><a
-    href="#patterns/delimited_jumps"
+    href="#patterns/delimcc"
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
-  <div id="patterns/delimited_jumps@caduceus:eval/prompt" class="">
+  <div id="patterns/delimcc@caduceus:eval/prompt" class="">
 <h4 class="pattern-title">Thetis&#39; Gambit ([pattern] | pattern → many)<a
-    href="#patterns/delimited_jumps@caduceus:eval/prompt"
+    href="#patterns/delimcc@caduceus:eval/prompt"
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h4>
@@ -381,12 +411,12 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: wdeaqe</canvas>
   </details>
-      <p></p>
+      <p>Cast a pattern or list of patterns from the stack exactly like <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval"><span style="color: #fc77be">Hermes&#39; Gambit</span></a>, except that anything outside of this cast will not be captured by an <a href="#patterns/delimcc@caduceus:eval/control"><span style="color: #fc77be">Arke&#39;s Gambit</span></a> within it.</p>
   </div>
 <br />
-  <div id="patterns/delimited_jumps@caduceus:eval/control" class="">
+  <div id="patterns/delimcc@caduceus:eval/control" class="">
 <h4 class="pattern-title">Arke&#39;s Gambit ([pattern] | pattern → many)<a
-    href="#patterns/delimited_jumps@caduceus:eval/control"
+    href="#patterns/delimcc@caduceus:eval/control"
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h4>
@@ -437,8 +467,10 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: waqdeq</canvas>
   </details>
-      <p></p>
+      <p>Cast a pattern or list of patterns from the stack similarly to <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">Iris&#39; Gambit</span></a>. Must be drawn within <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a>.</p>
   </div>
+<br />
+    <p>All of the patterns that would have been drawn between the end of the pattern list and the end of the enclosing <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a> are <i>moved</i> into a Call iota, which is pushed to the stack instead of a Jump iota.</p><p>When the Call iota is executed, the captured patterns will be cast as if by <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval"><span style="color: #fc77be">Hermes&#39; Gambit</span></a>. If the Call iota is not executed, the rest of the patterns within the enclosing <a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">Thetis&#39; Gambit</span></a> will be skipped.</p>
 <br />
 </div>
 <div id="patterns/jump_manipulation" class="entry">
@@ -458,6 +490,8 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>Just like my <span style="color: #b38ef3">Hexes</span> interact with the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/stack">stack</a>, Nature uses a stack of its own (made up of &#34;frames&#34;) when casting my <span style="color: #b38ef3">Hexes</span>. Jump iotas contain a snapshot of this stack at a particular moment in time, and I can use the patterns in this section to deconstruct and rearrange that snapshot.<br />Unfortunately, despite their similarity to Jump iotas, it seems these patterns do <i>not</i> work on Call iotas.</p>
+<br />
   <div id="patterns/jump_manipulation@hexcasting:add" class="">
 <h4 class="pattern-title">Additive Distillation (jump, jump → jump)<a
     href="#patterns/jump_manipulation@hexcasting:add"
@@ -511,7 +545,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: waaw</canvas>
   </details>
-      <p></p>
+      <p>Remove the Jump iota at the top of the stack, then add all its frames to the bottom of the Jump iota at the top of the stack.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@hexcasting:abs" class="">
@@ -567,7 +601,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: wqaqw</canvas>
   </details>
-      <p></p>
+      <p>Remove the Jump iota at the top of the stack, then push the number of frames within it to the stack.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@hexcasting:splat" class="">
@@ -623,7 +657,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: qwaeawq</canvas>
   </details>
-      <p></p>
+      <p>Remove the Jump iota at the top of the stack, then for each of its frames, push a new Jump iota containing only that frame to the stack.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@hexcasting:construct" class="">
@@ -679,7 +713,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: ddewedd</canvas>
   </details>
-      <p></p>
+      <p>Remove the Jump iota at the top of the stack, then add its top frame to the top of the Jump iota at the top of the stack.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@hexcasting:deconstruct" class="">
@@ -735,7 +769,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: aaqwqaa</canvas>
   </details>
-      <p></p>
+      <p>Remove the top frame from the Jump iota at the top of the stack, then push a new Jump iota containing only that frame to the stack.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@jump_tags" class="">
@@ -744,7 +778,7 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h4>
-    <p>It seems the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a> is not the only place that I can store information within a <span style="color: #b38ef3">Hex</span>. In fact, I am able to hide iotas within the very concept of evaluation. I call this technique <span style="color: #8d6acc">jump tags</span>; some other texts refer to it as &#34;continuation marks&#34;.</p><p>There is one notable limitation of <span style="color: #8d6acc">jump tags</span>, however: they can only hold a single iota at a time. Unlike the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a>, even lists are too much.</p>
+    <p>The <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a> is not the only place that I can store information within a <span style="color: #b38ef3">Hex</span>. In fact, I am able to hide iotas within the very concept of evaluation. I call this technique <span style="color: #8d6acc">jump tags</span>; some other texts refer to it as &#34;continuation marks&#34;.</p><p>There is one notable limitation of <span style="color: #8d6acc">jump tags</span>, however: they can only hold a single iota at a time. Unlike the <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">ravenmind</span></a>, even lists are too much.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@caduceus:read/mark/local" class="">
@@ -856,7 +890,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: adaaddad</canvas>
   </details>
-      <p>Like <a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">Ewer&#39;s Reflection</span></a>, but the iota is read out of the top frame of a jump iota.</p>
+      <p>Like <a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">Ewer&#39;s Reflection</span></a>, but the iota is read out of the top frame of a Jump iota.</p>
   </div>
 <br />
   <div id="patterns/jump_manipulation@caduceus:write/mark/local" class="">
