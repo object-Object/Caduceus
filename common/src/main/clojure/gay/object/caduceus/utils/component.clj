@@ -11,13 +11,13 @@
 
 (defn join
   ([coll] (join "" coll))
-  ([separator coll]
+  ([^String separator coll]
    (reduce
-     #(-> %1
+     #(-> ^net.minecraft.network.chat.MutableComponent %1
           (.append separator)
-          (.append %2))
+          (.append ^net.minecraft.network.chat.MutableComponent %2))
      (if-let [v (first coll)]
-       (.copy v)
+       (.copy ^net.minecraft.network.chat.Component v)
        (literal ""))
      (rest coll))))
 
@@ -29,18 +29,19 @@
     net.minecraft.network.chat.HoverEvent$Action/SHOW_TEXT
     hover-component))
 
-(defn hover [base-component hover-component]
+(defn hover [^net.minecraft.network.chat.MutableComponent base-component
+             ^net.minecraft.network.chat.Component hover-component]
   (.withStyle base-component
-              #(.withHoverEvent % (hover-event hover-component))))
+              #(.withHoverEvent ^net.minecraft.network.chat.Style % (hover-event hover-component))))
 
-(defn red [component]
+(defn red [^net.minecraft.network.chat.MutableComponent component]
   (.withStyle component net.minecraft.ChatFormatting/RED))
 
-(defn dark-gray [component]
+(defn dark-gray [^net.minecraft.network.chat.MutableComponent component]
   (.withStyle component net.minecraft.ChatFormatting/DARK_GRAY))
 
-(defn blue [component]
+(defn blue [^net.minecraft.network.chat.MutableComponent component]
   (.withStyle component net.minecraft.ChatFormatting/BLUE))
 
-(defn italic [component]
+(defn italic [^net.minecraft.network.chat.MutableComponent component]
   (.withStyle component net.minecraft.ChatFormatting/ITALIC))

@@ -68,6 +68,9 @@ clojure {
             // compile everything ahead of time so it can be remapped
             aotAll()
 
+            // reflection WILL fail on Minecraft classes
+            reflection = "warn"
+
             compiler {
                 directLinking = true
 

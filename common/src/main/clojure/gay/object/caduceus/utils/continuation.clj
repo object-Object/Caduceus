@@ -80,7 +80,7 @@
   (when-let [frame (frame cont)]
     (set-frame-mark frame mark world)))
 
-(defn- frame-tag-type-id [tag]
+(defn- frame-tag-type-id ^net.minecraft.resources.ResourceLocation [^net.minecraft.nbt.CompoundTag tag]
   (-> tag
       (.getString HexContinuationTypes/KEY_TYPE)
       (net.minecraft.resources.ResourceLocation/tryParse)
@@ -88,7 +88,7 @@
 
 (def MARK-TAG "caduceus:mark")
 
-(defn- get-frame-tag-mark [tag]
+(defn- get-frame-tag-mark [^net.minecraft.nbt.CompoundTag tag]
   (if (.contains tag MARK-TAG net.minecraft.nbt.Tag/TAG_COMPOUND)
     (let [mark-tag (.getCompound tag MARK-TAG)
           mark-type (.getString mark-tag HexIotaTypes/KEY_TYPE)]
@@ -133,7 +133,7 @@
   ([tag] (display tag "caduceus.tooltip.continuation"))
   ([tag i18n-key]
    (->> tag
-        (#(.getList % SpellContinuation/TAG_FRAME net.minecraft.nbt.Tag/TAG_COMPOUND))
+        (#(.getList ^net.minecraft.nbt.CompoundTag % SpellContinuation/TAG_FRAME net.minecraft.nbt.Tag/TAG_COMPOUND))
         (mapv display-frame)
         (component/join ", ")
         (component/translatable i18n-key)
