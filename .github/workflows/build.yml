@@ -139,6 +139,9 @@ jobs:
 
       - name: Run MC test client
         if: matrix.env == 'client'
+        # sometimes the headlessmc launcher just hangs for no clear reason
+        # you can try re-running the failed jobs if it hits this, or increase the timeout if your mod actually takes that long to load
+        timeout-minutes: 10
         uses: headlesshq/mc-runtime-test@3.1.1
         with:
           java: 17
@@ -150,6 +153,7 @@ jobs:
       
       - name: Run MC test server
         if: matrix.env == 'server'
+        timeout-minutes: 10  # see above
         uses: headlesshq/mc-server-test@1.0.0
         with:
           java: 17
