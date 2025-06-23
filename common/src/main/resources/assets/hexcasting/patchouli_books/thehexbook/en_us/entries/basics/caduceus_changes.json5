@@ -5,5 +5,6 @@
   advancement: "hexcasting:root",
   pages: [
     "caduceus.book.basics.caduceus_changes.1",
+    "caduceus.book.basics.caduceus_changes.2",
   ],
 }

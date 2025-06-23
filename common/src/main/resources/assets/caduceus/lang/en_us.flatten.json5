@@ -5,8 +5,8 @@
         caduceus_changes: {
           "": "Caduceus Changes",
           "1": "I have noticed some changes to the behavior of certain $(l:patterns/meta#hexcasting:eval/cc)meta-evaluation techniques/$ as of late.$(br2)\
-            Jump iotas are no longer entirely opaque to me - I can now see the $(l:patterns/jump_manipulation)components/$ that make them up, although I have not yet managed to isolate one.$(br2)\
-            Additionally, it seems $(l:casting/mishaps)Too Many Iotas/$ mishaps have become more common when working with Jump iotas. I should take care not to delve too deep.",
+            Jump iotas are no longer entirely opaque to me - I can now see the $(l:patterns/jump_manipulation)components/$ that make them up, although I have not yet managed to isolate one.",
+          "2": "Additionally, it seems $(l:casting/mishaps)Too Many Iotas/$ mishaps have become more common when working with Jump iotas. I should take care not to delve too deep.",
         },
       },
       casting: {
@@ -51,7 +51,7 @@
             Unfortunately, despite their similarity to Jump iotas, it seems these patterns do $(italic)not/$ work on Call iotas.",
           add: "Remove the Jump iota at the top of the stack, then add all its frames to the bottom of the Jump iota at the top of the stack.",
           abs: "Remove the Jump iota at the top of the stack, then push the number of frames within it to the stack.",
-          splat: "Remove the Jump iota at the top of the stack, then for each of its frames, push a new Jump iota containing only that frame to the stack.",
+          splat: "Remove the Jump iota at the top of the stack, then, for each of its frames, push a new Jump iota containing only that frame to the stack.",
           construct: "Remove the Jump iota at the top of the stack, then add its top frame to the top of the Jump iota at the top of the stack.",
           deconstruct: "Remove the top frame from the Jump iota at the top of the stack, then push a new Jump iota containing only that frame to the stack.",
           jump_tags: {
