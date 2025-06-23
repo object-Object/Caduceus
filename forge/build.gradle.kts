@@ -86,6 +86,12 @@ dependencies {
         localRuntime(it)
         include(it)
     }
+
+    libs.classgraph.also {
+        implementation(it)
+        include(it)
+        forgeRuntimeLibrary(it)
+    }
 }
 
 tasks {

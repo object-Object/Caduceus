@@ -6,12 +6,12 @@
   "client": [
   ],
   "mixins": [
-    "MixinAllContinuationFrames",
     "MixinContinuationFrameCompanion",
     "actions.MixinOpSplat",
     "iota.MixinContinuationIota",
     "iota.MixinContinuationIotaType"
   ],
+  "plugin": "gay.object.caduceus.mixin.MixinConfigPlugin",
   "injectors": {
     "defaultRequire": 1
   }

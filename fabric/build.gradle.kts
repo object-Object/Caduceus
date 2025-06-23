@@ -70,6 +70,11 @@ dependencies {
         include(it)
         annotationProcessor(it)
     }
+
+    libs.classgraph.also {
+        implementation(it)
+        include(it)
+    }
 }
 
 publishMods {

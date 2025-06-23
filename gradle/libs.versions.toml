@@ -59,6 +59,7 @@ caelus = "3.1.0+1.20"
 asm = "9.5"
 shadow = "7.1.2"
 modPublish = "0.5.1"
+classgraph = "4.8.179"
 
 [bundles]
 asm = ["asm", "asm-analysis", "asm-commons", "asm-tree", "asm-util"]
@@ -122,6 +123,7 @@ asm-commons  = { module="org.ow2.asm:asm-commons", version.ref="asm" }
 asm-tree     = { module="org.ow2.asm:asm-tree", version.ref="asm" }
 asm-util     = { module="org.ow2.asm:asm-util", version.ref="asm" }
 
+classgraph = { module="io.github.classgraph:classgraph", version.ref="classgraph" }
 
 serializationHooks = { module="libs:serialization-hooks", version.ref="serializationHooks" }
 

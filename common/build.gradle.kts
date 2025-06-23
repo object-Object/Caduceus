@@ -23,4 +23,6 @@ dependencies {
         implementation(it)
         annotationProcessor(it)
     }
+
+    implementation(libs.classgraph)
 }

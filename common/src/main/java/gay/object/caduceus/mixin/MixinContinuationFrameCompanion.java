@@ -1,10 +1,11 @@
 package gay.object.caduceus.mixin;
 
+import at.petrak.hexcasting.api.casting.eval.vm.ContinuationFrame;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.common.lib.hex.HexContinuationTypes;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import gay.object.caduceus.utils.continuation.ContinuationMarkHolder;
 import gay.object.caduceus.utils.continuation.ContinuationUtils;
-import at.petrak.hexcasting.api.casting.eval.vm.ContinuationFrame;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
@@ -18,8 +19,8 @@ public class MixinContinuationFrameCompanion {
         if (
             frame instanceof ContinuationMarkHolder holder
             && tag.contains(ContinuationUtils.getMarkTagKey(), Tag.TAG_COMPOUND)
-            // CURSED: pass the frame through serialization to detect singletons
-            && frame.getType().deserializeFromNBT(frame.serializeToNBT(), world) != frame
+            // CURSED: deserialize the frame again to detect singletons
+            && frame != frame.getType().deserializeFromNBT(tag.getCompound(HexContinuationTypes.KEY_DATA), world)
         ) {
             var markTag = tag.getCompound(ContinuationUtils.getMarkTagKey());
             var mark = IotaType.deserialize(markTag, world);
