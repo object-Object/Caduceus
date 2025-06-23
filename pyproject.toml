@@ -9,7 +9,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hexdoc-caduceus"
-description = "A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025."
+description = "A Clojure-based Hex Casting addon for advanced meta-evaluation."
 readme = "doc/README.md"
 authors = [
     { name="object-Object" },

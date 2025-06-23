@@ -22,12 +22,9 @@ caduceusModDependencies {
     }
 
     // CurseForge/Modrinth mod dependency metadata
-    requires("architectury-api")
-    requires("cloth-config")
-    requires(curseforge = "hexcasting", modrinth = "hex-casting")
     requires("fabric-api")
-    requires("fabric-language-kotlin")
-    optional("modmenu")
+    requires("architectury-api")
+    requires(curseforge = "hexcasting", modrinth = "hex-casting")
 }
 
 dependencies {

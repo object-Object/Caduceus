@@ -3,7 +3,7 @@
   "id": "caduceus",
   "version": "${version}",
   "name": "Caduceus",
-  "description": "A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025.",
+  "description": "A Clojure-based Hex Casting addon for advanced meta-evaluation.",
   "authors": [
     "object-Object"
   ],
@@ -26,12 +26,7 @@
     "minecraft": "${versions.minecraft}",
     "fabricloader": ">=${versions.fabric_loader}",
     "fabric-api": ">=${versions.fabric_api}",
-    "fabric-language-kotlin": ">=${versions.kotlin_fabric}",
     "architectury": ">=${versions.architectury}",
-    "hexcasting": ">=${versions.hexcasting_dependency}",
-    "cloth-config": ">=${versions.clothConfig}"
-  },
-  "suggests": {
-    "modmenu": ">=${versions.modMenu}"
+    "hexcasting": ">=${versions.hexcasting_dependency}"
   }
 }

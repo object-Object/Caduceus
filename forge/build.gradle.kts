@@ -48,9 +48,7 @@ caduceusModDependencies {
 
     // CurseForge/Modrinth mod dependency metadata
     requires("architectury-api")
-    requires("cloth-config")
     requires(curseforge = "hexcasting", modrinth = "hex-casting")
-    requires("kotlin-for-forge")
 }
 
 dependencies {

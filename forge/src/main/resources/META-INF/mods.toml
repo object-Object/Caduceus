@@ -8,7 +8,7 @@ version = "${version}"
 displayName = "Caduceus"
 logoFile = "assets/caduceus/icon.png"
 authors = "object-Object"
-description = "A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025."
+description = "A Clojure-based Hex Casting addon for advanced meta-evaluation."
 
 [[dependencies.caduceus]]
 modId = "forge"
@@ -28,13 +28,6 @@ side = "BOTH"
 modId = "architectury"
 mandatory = true
 versionRange = "[${versions.architectury},)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.caduceus]]
-modId = "cloth_config"
-mandatory = true
-versionRange = "[${versions.cloth_config},)"
 ordering = "NONE"
 side = "BOTH"
 
