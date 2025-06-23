@@ -1,5 +1,5 @@
 {
-  name: "caduceus.book.patterns.delimited_jumps",
+  name: "caduceus.book.patterns.delimcc",
   icon: "minecraft:respawn_anchor",
   category: "hexcasting:patterns",
   advancement: "hexcasting:root",
@@ -11,7 +11,7 @@
       anchor: "caduceus:eval/prompt",
       input: "[pattern] | pattern",
       output: "many",
-      text: "caduceus.book.patterns.delimited_jumps.eval/prompt",
+      text: "caduceus.book.patterns.delimcc.eval/prompt",
     },
     {
       type: "hexcasting:pattern",
@@ -19,7 +19,8 @@
       anchor: "caduceus:eval/control",
       input: "[pattern] | pattern",
       output: "many",
-      text: "caduceus.book.patterns.delimited_jumps.eval/control",
+      text: "caduceus.book.patterns.delimcc.eval/control.1",
     },
+    "caduceus.book.patterns.delimcc.eval/control.2",
   ],
 }

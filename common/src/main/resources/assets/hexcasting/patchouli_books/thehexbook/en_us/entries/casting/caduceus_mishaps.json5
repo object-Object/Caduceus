@@ -1,0 +1,14 @@
+{
+  name: "caduceus.book.casting.caduceus_mishaps",
+  icon: "minecraft:textures/mob_effect/wither.png",
+  category: "hexcasting:casting",
+  advancement: "hexcasting:root",
+  pages: [
+    "caduceus.book.casting.caduceus_mishaps.1",
+    {
+      type: "patchouli:text",
+      title: "caduceus.book.casting.caduceus_mishaps.no_prompt.title",
+      text: "caduceus.book.casting.caduceus_mishaps.no_prompt.text",
+    },
+  ],
+}

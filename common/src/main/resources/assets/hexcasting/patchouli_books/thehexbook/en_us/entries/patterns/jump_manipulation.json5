@@ -5,6 +5,7 @@
   advancement: "hexcasting:root",
   sortnum: 13,
   pages: [
+    "caduceus.book.patterns.jump_manipulation.1",
     {
       type: "hexcasting:pattern",
       op_id: "hexcasting:add",

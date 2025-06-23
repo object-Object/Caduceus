@@ -2,6 +2,8 @@
 
 [![powered by hexdoc](https://img.shields.io/endpoint?url=https://hexxy.media/api/v0/badge/hexdoc?label=1)](https://github.com/hexdoc-dev/hexdoc)
 
+[CurseForge](https://curseforge.com/minecraft/mc-mods/caduceus) | [Modrinth](https://modrinth.com/mod/caduceus)
+
 A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025.
 
 ## Overview
@@ -10,6 +12,7 @@ A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJ
   - Delimited continuations
   - Continuation marks
   - Jump iota manipulation
+  - Improved jump iota display
 - All non-mixin code is written in Clojure.
 - On Fabric, support is automatically added for third-party continuation frame types by scanning the classpath and generating a mixin at runtime with a dynamic `targets` list.
 
@@ -23,4 +26,4 @@ Additionally, avoid using `:import` from remapped packages (ie. `net.minecraft`)
 
 ## Attribution
 
-- Icon: `:irissy` by hakimen.
+- Icon: `:irissy:` by hakimen.
