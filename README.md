@@ -4,9 +4,18 @@
 
 A Clojure-based Hex Casting addon for advanced meta-evaluation. Created for HexJam 2025.
 
+## Overview
+
+- Adds the following meta-evaluation features:
+  - Delimited continuations
+  - Continuation marks
+  - Jump iota manipulation
+- All non-mixin code is written in Clojure.
+- On Fabric, support is automatically added for third-party continuation frame types by scanning the classpath and generating a mixin at runtime with a dynamic `targets` list.
+
 ## Developing
 
-IMPORTANT: Type hints should be **avoided** whenever possible. Clojure seems to compile them into code like `RT.classForName("net.minecraft.resources.ResourceLocation`, which fails on Fabric because it isn't remapped.
+IMPORTANT: Type hints for Minecraft classes should be **avoided** whenever possible. Clojure seems to compile them into code like `RT.classForName("net.minecraft.resources.ResourceLocation`, which fails on Fabric because it isn't remapped.
 
 I think this should be fixable using [elide-meta](https://clojure.org/reference/compilation#_compiler_options), but Clojurephant's elideMeta option doesn't seem to be working.
 
