@@ -1,0 +1,8 @@
+{
+  hexdoc: {
+    caduceus: {
+      title: "Caduceus之书",
+      description: "基于Clojure编写的咒法学附属，专为高级元运行而生。",
+    },
+  }
+}
