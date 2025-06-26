@@ -5,7 +5,7 @@
            (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
            (at.petrak.hexcasting.api.casting.iota IotaType NullIota)
            (at.petrak.hexcasting.common.lib.hex HexContinuationTypes HexIotaTypes)
-           (dev.architectury.platform Platform)))
+           (dev.architectury.platform Mod Platform)))
 
 (defn done? [cont]
   (instance? SpellContinuation$Done cont))
@@ -97,7 +97,7 @@
 
 (defn- mod-name [id]
   (if-let [mod (-> id Platform/getOptionalMod (.orElse nil))]
-    (.getName mod)
+    (.getName ^Mod mod) ; type hint is required to prevent reflection from loading client method on server
     (as-> id v
           (str/split v #"_")
           (map str/capitalize v)
