@@ -2,10 +2,11 @@
   (:require [clojure.string :as str]
             [gay.object.caduceus.utils.component :as component])
   (:import (at.petrak.hexcasting.api HexAPI)
-           (at.petrak.hexcasting.api.casting.eval.vm SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
+           (at.petrak.hexcasting.api.casting.eval.vm FrameForEach SpellContinuation SpellContinuation$Done SpellContinuation$NotDone)
            (at.petrak.hexcasting.api.casting.iota IotaType NullIota)
            (at.petrak.hexcasting.common.lib.hex HexContinuationTypes HexIotaTypes)
-           (dev.architectury.platform Mod Platform)))
+           (dev.architectury.platform Mod Platform)
+           (java.util ArrayList)))
 
 (defn done? [cont]
   (instance? SpellContinuation$Done cont))
@@ -39,6 +40,21 @@
   (->> i
        (frames '()) ; get frames in reverse order
        (push-all j)))
+
+(defn- clean-thoth-frame [frame]
+  (if (instance? FrameForEach frame)
+    (FrameForEach/new
+      (.getData frame)
+      (.getCode frame)
+      (.getBaseStack frame)
+      (-> frame .getAcc ArrayList/new))
+    frame))
+
+(defn clean-thoth-frames [cont]
+  (->> cont
+       (frames '())
+       (map clean-thoth-frame)
+       push-all))
 
 (definterface ContinuationMarkHolder
   (^at.petrak.hexcasting.api.casting.iota.Iota
@@ -147,10 +163,15 @@
                       net.minecraft.network.chat.Component]
             ^:static [^{org.jetbrains.annotations.Nullable {}} getFrameMark
                       [at.petrak.hexcasting.api.casting.eval.vm.ContinuationFrame]
-                      at.petrak.hexcasting.api.casting.iota.Iota]])
+                      at.petrak.hexcasting.api.casting.iota.Iota]
+            ^:static [cleanThothFrames
+                      [at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation]
+                      at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation]])
 
 (defn -getMarkTagKey [] MARK-TAG)
 
 (defn -display [tag] (display tag))
 
 (defn -getFrameMark [frame] (get-frame-mark frame))
+
+(defn -cleanThothFrames [cont] (clean-thoth-frames cont))

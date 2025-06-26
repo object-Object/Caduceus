@@ -16,7 +16,7 @@
 
 (defn ->DelimitedContinuationIota [cont]
   (proxy
-    [Iota DelimitedContinuationIota] [iota-type cont]
+    [Iota DelimitedContinuationIota] [iota-type (continuation/clean-thoth-frames cont)]
     (getContinuation [] cont)
     (isTruthy [] true)
     (toleratesOther [that]
