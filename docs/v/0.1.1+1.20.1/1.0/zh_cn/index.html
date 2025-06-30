@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Caduceus之书</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="基于Clojure编写的咒法学附属，专为高级元运行而生。" />
+      <meta name="author" content="object-Object" />
+        <link rel="None" type="image/ico" href="favicon.ico" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" />
+        <link rel="icon" type="image/png" href="favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="favicon-64x64.png" />
+        <link rel="icon" type="image/png" href="favicon-96x96.png" />
+        <link rel="icon" type="image/png" href="favicon-180x180.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-152x152.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-167x167.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-180x180.png" />
+        <link rel="None" type="image/png" href="mstile-70x70.png" />
+        <link rel="None" type="image/png" href="mstile-270x270.png" />
+        <link rel="None" type="image/png" href="mstile-310x310.png" />
+        <link rel="None" type="image/png" href="mstile-310x150.png" />
+        <link rel="shortcut icon" type="image/png" href="favicon-196x196.png" />
+      <link rel="mask-icon" href="https://raw.githubusercontent.com/hexdoc-dev/hexdoc/main/media/safari-pinned-tab.svg" color="#332233">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Caduceus之书" />
+<meta property="og:image" content="https://caduceus.hexxy.media/v/0.1.1+1.20.1/1.0/zh_cn/icon.png" />
+<meta property="og:url" content="https://caduceus.hexxy.media/v/0.1.1+1.20.1/1.0/zh_cn" />
+<meta property="og:description" content="基于Clojure编写的咒法学附属，专为高级元运行而生。" />
+<meta property="og:site_name" content="Caduceus (0.1.1+1.20.1)" />
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="textures.css">
+      <noscript>
+        <style>
+          /* for accessibility */
+          .spoilered {
+            filter: none !important;
+          }
+        </style>
+      </noscript>
+        <script type="module" src="index.js"></script>
+  <script type="module" src="hexcasting.js"></script>
+  <script type="module" src="hexcasting_render.js"></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-collapse"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../..">Caduceus之书</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li>
+    <a
+      href="https://github.com/object-Object/Caduceus/tree/7224aa89ddaa21785e22c597eaa2374d7fd2d955"
+        target="_blank"
+      class="navbar-link"
+      role="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >GitHub <i class="bi bi-box-arrow-up-right external-link-icon"></i></a>
+  </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >0.1.1+1.20.1 <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="version-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >简体中文 (中国大陆) <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-left" id="lang-dropdown"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin-top: 3em;">
+  <blockquote>
+      <h1><p>这是Caduceus文档的在线版本。</p></h1>
+      <p><strong>条目的模糊处理相当于剧透警告</strong>。点击条目即可取消模糊，不过这么做有可能破坏游戏后期的进程与体验。也可点击<a href="?nospoiler">此处</a>以取消所有模糊。</p>
+      <span id="old-version-notice" class="hidden">
+        <br />
+        <p><i>往事犹若异乡；他们在那里做的事情都不一样。</i></p>
+      </span>
+  </blockquote>
+</div>
+<div class="container">
+<div id="table-of-contents"></div>
+<nav class="toc-container">
+  <h2 class="page-header">
+    <span class="nobr">目录<a
+      href="javascript:void(0)"
+      class="permalink toggle-link small"
+      data-target="toc-category"
+      title="显示或收起全部"
+    ><i class="bi bi-list-nested"></i></a><a
+    href="#table-of-contents"
+    class="permalink small toc-permalink"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></span>
+  </h2>
+    <details class="toc-category">
+      <summary><a href="#basics" class="toc-elem "><img
+      title="紫水晶碎片"
+      alt="紫水晶碎片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/amethyst_shard.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 初入咒法</a></summary>
+      <ul>
+          <li><a href="#basics/caduceus_changes" class="toc-elem "><img
+      title="末影之眼"
+      alt="末影之眼"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/ender_eye.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Caduceus 中的改动</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#casting" class="toc-elem "><img
+      title="橡木法杖"
+      alt="橡木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/oak.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 咒法学</a></summary>
+      <ul>
+          <li><a href="#casting/caduceus_mishaps" class="toc-elem "><img
+      title="凋零"
+      alt="凋零"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/mob_effect/wither.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Caduceus 事故</a></li>
+          <li><a href="#casting/continuations" class="toc-elem "><img
+      title="书"
+      alt="书"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 跳转入门</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#patterns" class="toc-elem "><img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > 图案</a></summary>
+      <ul>
+          <li><a href="#patterns/delimcc" class="toc-elem "><img
+      title="重生锚"
+      alt="重生锚"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/respawn_anchor_0.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > 定界跳转</a></li>
+          <li><a href="#patterns/jump_manipulation" class="toc-elem "><img
+      title="紫珀台阶"
+      alt="紫珀台阶"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/purpur_slab.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > 跳转操作</a></li>
+      </ul>
+    </details>
+</nav>
+  <main class="book-body">
+<section id="basics">
+    <h2 class="category-title page-header">
+    <img
+      title="紫水晶碎片"
+      alt="紫水晶碎片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/amethyst_shard.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >初入咒法<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#basics"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>研究这种魔法的人士会用<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#items/staff"><span style="color: #b0b">法杖</span></a>在空中绘制奇异的图案来施放他们口中的“<span style="color: #b38ef3">咒术</span>”，他们也会让<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#items/hexcasting"><span style="color: #b0b">强大的魔法物品</span></a>替他们施法。我应该也可以这样做？</p>
+<div id="basics/caduceus_changes" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="末影之眼"
+      alt="末影之眼"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/ender_eye.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Caduceus 中的改动<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#basics/caduceus_changes"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>我注意到某类<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc">云运行技术</a>的表现在近期发生了变化。</p><p>跳转 iota 不再无法深入检验了：我现在可以看见组成它们的<a href="#patterns/jump_manipulation">许多组件</a>，但还没法把各组件分离出来。</p>
+<br />
+    <p>而且，似乎使用跳转 iota 时 <a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/mishaps">Iota 过多</a>事故会频繁出现。小心不要陷入沉思了。</p>
+<br />
+</div>
+</section>
+<section id="casting">
+    <h2 class="category-title page-header">
+    <img
+      title="橡木法杖"
+      alt="橡木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/oak.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >咒法学<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>我好像已经开始理解以前的咒法师们是如何施放<span style="color: #b38ef3">咒术</span>的了！虽然有些复杂，但我坚信我能理清其中脉络。继续研究吧……</p>
+<div id="casting/caduceus_mishaps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="凋零"
+      alt="凋零"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/mob_effect/wither.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Caduceus 事故<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting/caduceus_mishaps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>本节记录了操纵跳转 iota 和使用定界跳转时会出现的事故。</p>
+<br />
+  <h4>阿尔刻未受限</h4>
+    <p>试图在<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">忒提斯之策略</span></a>之外绘制<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">阿尔刻之策略</span></a>。</p>
+<br />
+</div>
+<div id="casting/continuations" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="书"
+      alt="书"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >跳转入门<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#casting/continuations"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>如同普通的操作需对<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/vectors">向量</a>有所见地，在将我的新发现运用到极致之前，也应当更深入地了解跳转 iota（又称“续体”/“continuation”）。我收集了些有关本主题的“轻松读物”。</p>
+<br />
+      <p>首先是一篇百科条目，主要介绍“第一类续体”的概念；这一概念由跳转 iota 实现。条目中还讨论了“以当前续体调用”/“call/cc”运算符，它和<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">伊里斯之策略</span></a>大致等价。</p>
+  <h4 class="linkout">
+    <a href="https://en.wikipedia.org/wiki/First-class_continuations" target="_blank">维基百科</a>
+  </h4>
+<br />
+      <p>然后是一篇博客，主要介绍“定界续体”/“delimited continuation”，还附带了详实的示例，可用<span style="color: #b38ef3">咒术</span>重写以便练习。如果觉得理解<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">忒提斯之策略</span></a>和<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">阿尔刻之策略</span></a>有困难，可以读读这篇博客。</p>
+  <h4 class="linkout">
+    <a href="https://groupoid.moe/posts/delim.html" target="_blank">博客</a>
+  </h4>
+<br />
+      <p>最后，如果不担心在某种程度上打破第四面墙，可以阅读这篇概览文档，以了解自然解读我<span style="color: #b38ef3">咒术</span>的具体方式。</p>
+  <h4 class="linkout">
+    <a href="https://github.com/FallingColors/HexMod/blob/5da1bf82464d/Common/src/main/java/at/petrak/hexcasting/api/casting/eval/README.md" target="_blank">施法的原理</a>
+  </h4>
+<br />
+</div>
+</section>
+<section id="patterns">
+    <h2 class="category-title page-header">
+    <img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >图案<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>我所发现的各式图案，和它们的功用。</p>
+<div id="patterns/delimcc" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="重生锚"
+      alt="重生锚"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/respawn_anchor_0.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >定界跳转<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/delimcc"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="patterns/delimcc@caduceus:eval/prompt" class="">
+<h4 class="pattern-title">忒提斯之策略 ([pattern] | pattern → many)<a
+    href="#patterns/delimcc@caduceus:eval/prompt"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wdeaqe"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：wdeaqe</canvas>
+  </details>
+      <p>运行栈中的图案或图案列表，与<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval"><span style="color: #fc77be">赫尔墨斯之策略</span></a>完全一致；区别在于，其内部的<a href="#patterns/delimcc@caduceus:eval/control"><span style="color: #fc77be">阿尔刻之策略</span></a>无法获取其外部的 iota。</p>
+  </div>
+<br />
+  <div id="patterns/delimcc@caduceus:eval/control" class="">
+<h4 class="pattern-title">阿尔刻之策略 ([pattern] | pattern → many)<a
+    href="#patterns/delimcc@caduceus:eval/control"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="waqdeq"
+        data-start="west"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：waqdeq</canvas>
+  </details>
+      <p>运行栈中的图案或图案列表，与<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval/cc"><span style="color: #fc77be">伊里斯之策略</span></a>类似。必须绘制于<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">忒提斯之策略</span></a>内部。</p>
+  </div>
+<br />
+    <p>将在图案列表末尾和<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">忒提斯之策略</span></a>闭合之间绘制的图案会<i>转移</i>到调用 iota 中；压入栈中的也不会是跳转 iota，而是此调用 iota。</p><p>执行到调用 iota 时，其中捕获的图案会如同对其使用<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/meta@hexcasting:eval"><span style="color: #fc77be">赫尔墨斯之策略</span></a>一样施放。如果不去执行调用 iota，即会跳过<a href="#patterns/delimcc@caduceus:eval/prompt"><span style="color: #fc77be">忒提斯之策略</span></a>闭合前剩余的图案。</p>
+<br />
+</div>
+<div id="patterns/jump_manipulation" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="紫珀台阶"
+      alt="紫珀台阶"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/purpur_slab.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >跳转操作<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/jump_manipulation"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>就和我的<span style="color: #b38ef3">咒术</span>能和<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#casting/stack">栈</a>交互一样，自然在处理我的<span style="color: #b38ef3">咒术</span>时会使用自己的栈（由“帧”组成）。跳转 iota 中包含了该栈在某一时刻的快照，这些快照可由本节中的图案拆解和重构。<br />可惜，虽然调用 iota 和跳转 iota 很相似，但这些图案<i>无法</i>作用于前者。</p>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:add" class="">
+<h4 class="pattern-title">加法之馏化 (jump, jump → jump)<a
+    href="#patterns/jump_manipulation@hexcasting:add"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="waaw"
+        data-start="north_east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：waaw</canvas>
+  </details>
+      <p>移除栈顶跳转 iota，再将其中所有栈帧加到此时栈顶跳转 iota 的底部。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:abs" class="">
+<h4 class="pattern-title">长度之纯化 (jump → num)<a
+    href="#patterns/jump_manipulation@hexcasting:abs"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wqaqw"
+        data-start="north_east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：wqaqw</canvas>
+  </details>
+      <p>移除栈顶跳转 iota，再返回其中栈帧数。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:splat" class="">
+<h4 class="pattern-title">群体之拆解 (jump → many)<a
+    href="#patterns/jump_manipulation@hexcasting:splat"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwaeawq"
+        data-start="north_west"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：qwaeawq</canvas>
+  </details>
+      <p>移除栈顶跳转 iota，再为其中各栈帧返回一个仅包含该栈帧本身的跳转 iota。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:construct" class="">
+<h4 class="pattern-title">演讲者之馏化 (jump, jump → jump)<a
+    href="#patterns/jump_manipulation@hexcasting:construct"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="ddewedd"
+        data-start="south_east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：ddewedd</canvas>
+  </details>
+      <p>移除栈顶跳转 iota，再将其顶部帧加到此时栈顶跳转 iota 的顶部。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@hexcasting:deconstruct" class="">
+<h4 class="pattern-title">演讲者之分解 (jump → jump, jump)<a
+    href="#patterns/jump_manipulation@hexcasting:deconstruct"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="aaqwqaa"
+        data-start="south_west"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：aaqwqaa</canvas>
+  </details>
+      <p>移除栈顶跳转 iota 的顶部帧，再返回一个仅包含该栈帧本身的跳转 iota。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@jump_tags" class="">
+<h4>跳转标签<a
+    href="#patterns/jump_manipulation@jump_tags"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+    <p><a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">渡鸦之思</span></a>并不是<span style="color: #b38ef3">咒术</span>中唯一用来存储信息的位置。其实，我可以直接把 iota 藏到运行这一概念中去。我把这种技术叫作<span style="color: #8d6acc">跳转标签</span>，部分其他文献则称其“续体标记”。</p><p>不过，<span style="color: #8d6acc">跳转标签</span>有一项局限：它们同一时刻只能持有单个 iota。和<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:local"><span style="color: #8d6acc">渡鸦之思</span></a>不一样的是，它们就连列表都存不下。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:read/mark/local" class="">
+<h4 class="pattern-title">壶罐之精思 (→ any)<a
+    href="#patterns/jump_manipulation@caduceus:read/mark/local"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="aeaaqawd"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：aeaaqawd</canvas>
+  </details>
+      <p>复制当前运行所对应的<span style="color: #8d6acc">跳转标签</span>中存储的 iota，并压入栈顶。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:read/mark/iota" class="">
+<h4 class="pattern-title">壶罐之纯化 (jump → any)<a
+    href="#patterns/jump_manipulation@caduceus:read/mark/iota"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adaaddad"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：adaaddad</canvas>
+  </details>
+      <p>和<a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">壶罐之精思</span></a>类似，但会从跳转 iota 的顶部帧所对应的<span style="color: #8d6acc">跳转标签</span>中读出。</p>
+  </div>
+<br />
+  <div id="patterns/jump_manipulation@caduceus:write/mark/local" class="">
+<h4 class="pattern-title">壶罐之策略 (any →)<a
+    href="#patterns/jump_manipulation@caduceus:write/mark/local"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="dqddedwa"
+        data-start="west"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：dqddedwa</canvas>
+  </details>
+      <p>移除栈顶 iota，将其写入当前运行所对应的<span style="color: #8d6acc">跳转标签</span>。<br />和<a href="https://hexcasting.hexxy.media/v/0.11.2/1.0/en_us#patterns/readwrite@hexcasting:write/entity"><span style="color: #fc77be">编年史家之策略</span></a>一样，不可向其写入真名。</p>
+  </div>
+<br />
+    <p>在调用结尾使用<a href="#patterns/jump_manipulation@caduceus:read/mark/local"><span style="color: #fc77be">壶罐之精思</span></a>或<a href="#patterns/jump_manipulation@caduceus:write/mark/local"><span style="color: #fc77be">壶罐之策略</span></a>时应当小心。它们读取或写入的标签并不一定符合预期。</p>
+<br />
+</div>
+</section>
+  </main>
+</div>
+      <footer class="footer">
+        <div class="container text-muted">
+          <p>该页面不是Minecraft的官方产品，不隶属于Mojang和Microsoft，且不代表Mojang和Microsoft的意见。</p><p>Minecraft的游戏内容和资源均为各自所有者的知识财产。</p><p>使用<a href="https://pypi.org/project/hexdoc/" target="_blank">hexdoc</a>精心制作。❤️</p>
+        </div>
+      </footer>
+  </body>
+</html>
