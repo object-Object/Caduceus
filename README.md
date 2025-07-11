@@ -24,4 +24,4 @@ Use fully-qualified type hints where necessary to ensure reflection is not used 
 
 ## Attribution
 
-- Icon: `:irissy:` by hakimen.
+- Icon: SamsTheNerd ([GitHub](https://github.com/SamsTheNerd), [Modrinth](https://modrinth.com/user/SamsTheNerd))
