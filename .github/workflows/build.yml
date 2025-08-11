@@ -40,6 +40,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Build mod
+        timeout-minutes: 15
         env:
           RELEASE: ${{ inputs.mod_release == true }}
         run: ./gradlew build
