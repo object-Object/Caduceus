@@ -6,8 +6,7 @@
            (at.petrak.hexcasting.common.lib.hex HexEvalSounds)
            (gay.object.caduceus.utils.continuation ContinuationMarkHolder)
            (java.util List)
-           (kotlin Pair)
-           (net.minecraft.nbt CompoundTag Tag)))
+           (kotlin Pair)))
 
 (declare prompt-frame-type goto-frame-type)
 
@@ -74,7 +73,7 @@
     ContinuationFrame$Type
     (deserializeFromNBT [_this tag world]
       (as-> tag v
-          (.getList v "code" Tag/TAG_COMPOUND)
+          (.getList v "code" net.minecraft.nbt.Tag/TAG_COMPOUND)
           (.deserialize ListIota/TYPE v world)
           (.getList v)
           (->GotoFrame v)))))
