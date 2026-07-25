@@ -6,7 +6,8 @@
            (at.petrak.hexcasting.common.lib.hex HexEvalSounds)
            (gay.object.caduceus.utils.continuation ContinuationMarkHolder)
            (java.util List)
-           (kotlin Pair)))
+           (kotlin Pair)
+           (net.minecraft.nbt CompoundTag Tag)))
 
 (declare prompt-frame-type goto-frame-type)
 
@@ -49,7 +50,7 @@
 ; A stack marker (like FrameFinishEval) that stores the executed list for implementing goto.
 (deftype GotoFrame [^SpellList code]
   ContinuationFrame
-  (breakDownwards [_this stack] (Pair/new false stack))
+  (breakDownwards [_this stack] (Pair/new true stack))
   (evaluate [_this cont _level _harness]
     (CastResult/new
       (NullIota/new)
@@ -61,7 +62,7 @@
   (serializeToNBT [_this]
     (let [tag (net.minecraft.nbt.CompoundTag/new)]
       (.put tag "code" (-> code
-                           (.toList)
+                           vec
                            (^[List] ListIota/new)
                            (.serialize)))
       tag))
@@ -73,7 +74,7 @@
     ContinuationFrame$Type
     (deserializeFromNBT [_this tag world]
       (as-> tag v
-          (.getCompound v "code")
+          (.getList v "code" Tag/TAG_COMPOUND)
           (.deserialize ListIota/TYPE v world)
           (.getList v)
           (->GotoFrame v)))))

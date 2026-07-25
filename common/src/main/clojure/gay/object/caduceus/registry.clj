@@ -65,7 +65,8 @@
   (->Registrar
     (fn [] HexRegistries/CONTINUATION_TYPE)
     (fn [] HexContinuationTypes/REGISTRY)
-    {:prompt (make-entry "prompt" frames/prompt-frame-type)}))
+    {:goto (make-entry "goto" frames/goto-frame-type)
+     :prompt (make-entry "prompt" frames/prompt-frame-type)}))
 
 (def iota-types
   (->Registrar
