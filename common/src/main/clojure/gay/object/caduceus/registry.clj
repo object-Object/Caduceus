@@ -1,7 +1,7 @@
 (ns gay.object.caduceus.registry
   (:require [gay.object.caduceus.core :as caduceus]
             [gay.object.caduceus.casting.actions.delimcc :as actions.delimcc]
-            [gay.object.caduceus.casting.actions.goto :as actions.goto]
+            [gay.object.caduceus.casting.actions.go_to :as actions.goto]
             [gay.object.caduceus.casting.actions.marks :as marks]
             [gay.object.caduceus.casting.arithmetic :as arithmetic]
             [gay.object.caduceus.casting.iota.delimcc :as iota.delimcc]

@@ -1,4 +1,5 @@
-(ns gay.object.caduceus.casting.actions.goto
+; goto is a reserved Java identifier
+(ns gay.object.caduceus.casting.actions.go_to
   (:require [gay.object.caduceus.casting.eval.vm.frames :as frames]
             [gay.object.caduceus.utils.casting :as casting]
             [gay.object.caduceus.utils.continuation :as continuation]
