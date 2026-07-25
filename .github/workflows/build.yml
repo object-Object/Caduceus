@@ -127,13 +127,13 @@ jobs:
           for url in ${{ matrix.dependencies }}; do
             wget --directory-prefix=run/mods/ "$url"
           done
-      
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: mod-build
           path: build/ciArtifacts/
-      
+
       - name: Prepare mod jar
         run: |
           cp build/ciArtifacts/*${{ matrix.modloader }}*.jar run/mods
@@ -143,7 +143,7 @@ jobs:
         # sometimes the headlessmc launcher just hangs for no clear reason
         # you can try re-running the failed jobs if it hits this, or increase the timeout if your mod actually takes that long to load
         timeout-minutes: 10
-        uses: headlesshq/mc-runtime-test@3.1.1
+        uses: headlesshq/mc-runtime-test@4.5.1
         with:
           java: 17
           mc: 1.20.1
@@ -151,11 +151,11 @@ jobs:
           regex: '.*${{ matrix.modloader }}.*'
           fabric-api: ${{ matrix.fabric-api }}
           mc-runtime-test: ${{ matrix.mc-runtime-test }}
-      
+
       - name: Run MC test server
         if: matrix.env == 'server'
         timeout-minutes: 10  # see above
-        uses: headlesshq/mc-server-test@1.0.0
+        uses: headlesshq/mc-server-test@1.1.1
         with:
           java: 17
           mc: 1.20.1
@@ -200,7 +200,7 @@ jobs:
       - uses: hexdoc-dev/actions/setup@v1
         with:
           python-version: 3.11
-        
+
       - name: Merge new hexdoc build into existing book
         uses: hexdoc-dev/actions/merge@v1
         with:
