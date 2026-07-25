@@ -1,6 +1,7 @@
 (ns gay.object.caduceus.registry
   (:require [gay.object.caduceus.core :as caduceus]
             [gay.object.caduceus.casting.actions.delimcc :as actions.delimcc]
+            [gay.object.caduceus.casting.actions.goto :as actions.goto]
             [gay.object.caduceus.casting.actions.marks :as marks]
             [gay.object.caduceus.casting.arithmetic :as arithmetic]
             [gay.object.caduceus.casting.iota.delimcc :as iota.delimcc]
@@ -48,6 +49,8 @@
      :prompt-at (make-action "eval/prompt_at" HexDir/NORTH_WEST "qedqaw" (actions.delimcc/->OpPromptAt))
      :control (make-action "eval/control" HexDir/WEST "waqdeq" (actions.delimcc/->OpControl))
      :control-at (make-action "eval/control_at" HexDir/NORTH_EAST "eqaedw" (actions.delimcc/->OpControlAt))
+     :setup-goto (make-action "eval/setup_goto" HexDir/EAST "qqdqdqdqq" (actions.goto/->OpSetupGoto))
+     :goto (make-action "eval/goto" HexDir/NORTH_WEST "wdaawdaw" (actions.goto/->OpGoto))
      :read-iota-mark (make-action "read/mark/iota" HexDir/EAST "adaaddad" (marks/->OpReadIotaMark))
      :read-local-mark (make-action "read/mark/local" HexDir/EAST "aeaaqawd" (marks/->OpReadLocalMark))
      :write-local-mark (make-action "write/mark/local" HexDir/WEST "dqddedwa" (marks/->OpWriteLocalMark))}))

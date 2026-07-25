@@ -84,6 +84,7 @@
           },
 
           "caduceus:": {
+            goto: "Goto",
             prompt: "Prompt",
           },
           "hexcasting:": {
@@ -103,6 +104,8 @@
         "eval/prompt_at": "Thetis' Gambit II",
         "eval/control": "Arke's Gambit",
         "eval/control_at": "Arke's Gambit II",
+        "eval/setup_goto": "Elbrus' Gambit",
+        "eval/goto": "Prometheus' Gambit",
         "read/mark/local": "Ewer's Reflection",
         "read/mark/iota": "Ewer's Purification",
         "write/mark/local": "Ewer's Gambit",
@@ -110,6 +113,7 @@
     },
 
     mishap: {
+      no_goto: "Did not first use Elbrus' Gambit",
       no_prompt: "Did not first use Thetis' Gambit",
       invalid_value: {
         class: {
