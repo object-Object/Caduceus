@@ -47,6 +47,11 @@
           },
           "eval/control_at": "Like $(l:patterns/delimcc#caduceus:eval/control)$(action)Arke's Gambit/$, but only patterns within an enclosing $(l:patterns/delimcc#caduceus:eval/prompt_at)$(action)Thetis' Gambit II/$ with a $(l:patterns/jump_manipulation#jump_tags)$(thing)jump tag/$ matching the given iota are captured. If the iota is $(l:casting/influences)$(thing)Null/$, this is equivalent to $(l:patterns/delimcc#caduceus:eval/control)$(action)Arke's Gambit/$.",
         },
+        goto: {
+          "": "Numeric Jumps",
+          "eval/setup_goto": "Cast a list of patterns from the stack exactly like $(l:patterns/meta#hexcasting:eval)$(action)Hermes' Gambit/$, except that a $(l:patterns/goto#caduceus:eval/goto)$(action)Prometheus' Gambit/$ within this cast will jump to an index within this list of patterns.",
+          "eval/goto": "Remove a number from the stack, then jump to that index in the list cast by the enclosing $(l:patterns/goto#caduceus:eval/setup_goto)$(action)Elbrus' Gambit/$. If the number is negative, the index counts from the end of the list instead.",
+        },
         jump_manipulation: {
           "": "Jump Manipulation",
           "1": "Just like my _Hexes interact with the $(l:casting/stack)stack/$, Nature uses a stack of its own (made up of \"frames\") when casting my _Hexes. Jump iotas contain a snapshot of this stack at a particular moment in time, and I can use the patterns in this section to deconstruct and rearrange that snapshot.$(br)\
