@@ -47,6 +47,11 @@
           },
           "eval/control_at": "与$(l:caduceus/patterns/delimcc#caduceus:eval/control)$(action)阿尔刻之策略/$类似，但它只会转移到闭合的$(l:caduceus/patterns/delimcc#caduceus:eval/prompt_at)$(action)忒提斯之策略，第二型/$，且其携带的$(l:caduceus/patterns/jump_manipulation#jump_tags)$(thing)跳转标签/$应匹配所给 iota。若该 iota 为 $(l:casting/influences)$(thing)Null/$，则其效果与$(l:caduceus/patterns/delimcc#caduceus:eval/control)$(action)阿尔刻之策略/$等价。",
         },
+        goto: {
+          "": "数值跳转",
+          "eval/setup_goto": "和$(l:patterns/meta#hexcasting:eval)$(action)赫尔墨斯之策略/$一样施放列表，但该列表中的$(l:caduceus/patterns/goto#caduceus:eval/goto)$(action)普罗米修斯之策略/$会跳转至列表中对应下标处。",
+          "eval/goto": "从栈顶移除一个数，并跳转至$(l:caduceus/patterns/goto#caduceus:eval/setup_goto)$(action)厄尔布鲁士之策略/$所施放列表中对应下标处。若该数为负，则从列表末尾开始计数。",
+        },
         jump_manipulation: {
           "": "跳转操作",
           "1": "就和我的$(hex)咒术/$能和$(l:casting/stack)栈/$交互一样，自然在处理我的$(hex)咒术/$时会使用自己的栈（由“帧”组成）。跳转 iota 中包含了该栈在某一时刻的快照，这些快照可由本节中的图案拆解和重构。$(br)\
@@ -84,6 +89,7 @@
           },
 
           "caduceus:": {
+            goto: "Goto",
             prompt: "Prompt",
           },
           "hexcasting:": {
@@ -103,6 +109,8 @@
         "eval/prompt_at": "忒提斯之策略，第二型",
         "eval/control": "阿尔刻之策略",
         "eval/control_at": "阿尔刻之策略，第二型",
+        "eval/setup_goto": "厄尔布鲁士之策略",
+        "eval/goto": "普罗米修斯之策略",
         "read/mark/local": "壶罐之精思",
         "read/mark/iota": "壶罐之纯化",
         "write/mark/local": "壶罐之策略",
@@ -110,6 +118,7 @@
     },
 
     mishap: {
+      no_goto: "没有先使用厄尔布鲁士之策略",
       no_prompt: "没有先使用忒提斯之策略",
       invalid_value: {
         class: {
